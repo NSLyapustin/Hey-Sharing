@@ -30,7 +30,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
 		tableView.delegate = self
 		tableView.dataSource = self
 		tableView.register(ProductCell.self, forCellReuseIdentifier: productCellId)
-		tableView.register(ProfileHeaderCell.self, forCellReuseIdentifier: headerCellId)
+		tableView.tableHeaderView = ProfileHeaderView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 170))
 		tableView.rowHeight = UITableView.automaticDimension
 		configure()
     }
@@ -42,27 +42,14 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
 
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		products.count + 1
+		products.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		if indexPath.row == 0 {
-			guard let cell = tableView.dequeueReusableCell(withIdentifier: headerCellId, for: indexPath) as? ProfileHeaderCell else { fatalError("Cannot deque cell") }
-			return cell
-		}
-
 		guard let cell = tableView.dequeueReusableCell(withIdentifier: productCellId, for: indexPath) as? ProductCell else { fatalError("Cannot deque cell") }
-		cell.product = products[indexPath.row - 1]
+		cell.product = products[indexPath.row]
 		return cell
     }
-
-	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		if indexPath.row == 0 {
-			return 170
-		}
-
-		return 76
-	}
 
 	private func configure() {
 		navigationController?.navigationBar.backgroundColor = UIColor.themeColor

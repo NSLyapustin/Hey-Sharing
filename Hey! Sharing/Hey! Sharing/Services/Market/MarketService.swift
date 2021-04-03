@@ -9,7 +9,7 @@ import UIKit
 
 protocol MarketService {
 	func getRecommendations(completion: @escaping ((Result<[Product], MarketError>)) -> ())
-	func getRecommendationsInCategory(category: Category, completion: @escaping ((Result<[Product], MarketError>)) -> ())
+	func getRecommendationsInCategory(category: CategoryName, completion: @escaping ((Result<[Product], MarketError>)) -> ())
 }
 
 enum MarketError: Error {

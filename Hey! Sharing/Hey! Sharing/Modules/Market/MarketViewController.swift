@@ -7,15 +7,15 @@
 
 import UIKit
 
-protocol MarketPresenter {
-	
+protocol MarketViewControllerPresenter {
+	func setProducts()
+	func setProductsByCategory(category: CategoryName)
 }
 
-class MarketViewController: UIViewController, Storyboarded, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UISearchResultsUpdating {
-	func updateSearchResults(for searchController: UISearchController) {
-	}
+class MarketViewController: UIViewController {
 
-
+	var presenter: MarketViewControllerPresenter?
+	var products: [Product]?
     weak var coordinator: MarketCoordinator?
 	let searchController = UISearchController(searchResultsController: nil)
 	private var productCollectionView: UICollectionView?
@@ -32,21 +32,14 @@ class MarketViewController: UIViewController, Storyboarded, UICollectionViewData
 		setup()
     }
 
-	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return 100
-	}
-
-	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath)
-		return cell
-	}
-
-	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-		CGSize(width: self.view.frame.width / 2 - 11,
-			   height: self.view.frame.width / 2 - 5)
+	func setProducts(products: [Product]) {
+		self.products = products
+		productCollectionView?.reloadData()
 	}
 
 	func setup() {
+		navigationController?.navigationBar.backgroundColor = .white
+		view.backgroundColor = .white
 		let productsLayout = UICollectionViewFlowLayout()
 		productsLayout.scrollDirection = .vertical
 		productCollectionView = UICollectionView(frame: .zero, collectionViewLayout: productsLayout)
@@ -58,14 +51,6 @@ class MarketViewController: UIViewController, Storyboarded, UICollectionViewData
 		productsCollectionView.delegate = self
 		productsCollectionView.dataSource = self
 		view.addSubview(productsCollectionView)
-
-//		categoryCollectionView.snp.makeConstraints { make in
-//			make.top.equalTo(view.safeAreaLayoutGuide)
-//			make.leading.equalToSuperview().offset(5)
-//			make.trailing.equalToSuperview().inset(5)
-//			make.height.equalTo(35)
-//		}
-//		categoryCollectionView.backgroundColor = .white
 
 		productsCollectionView.snp.makeConstraints { make in
 			make.bottom.equalToSuperview()
@@ -82,10 +67,44 @@ class MarketViewController: UIViewController, Storyboarded, UICollectionViewData
 			withReuseIdentifier: CategoryCollectionView.identifier,
 				for: indexPath) as? CategoryCollectionView else { fatalError() }
 		header.awakeFromNib()
+		header.presenter = presenter
 		return header
 	}
 
+	
+}
+
+extension MarketViewController: UISearchResultsUpdating {
+	func updateSearchResults(for searchController: UISearchController) {
+	}
+}
+
+extension MarketViewController: UICollectionViewDataSource {
+	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+		products?.count ?? 0
+	}
+
+	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+		guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as? ProductCollectionViewCell else { return ProductCollectionViewCell() }
+		cell.product = products?[indexPath.row]
+		return cell
+	}
+}
+
+extension MarketViewController: UICollectionViewDelegateFlowLayout {
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
 		CGSize(width: view.frame.width, height: 55)
+	}
+
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+		CGSize(width: self.view.frame.width / 2 - 11,
+			   height: self.view.frame.width / 2 - 5)
+	}
+}
+
+extension MarketViewController: UICollectionViewDelegate {
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		productCollectionView?.deselectItem(at: indexPath, animated: true)
+		print("Product tapped")
 	}
 }

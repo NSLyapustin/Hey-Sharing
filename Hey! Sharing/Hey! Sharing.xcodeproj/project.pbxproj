@@ -13,6 +13,7 @@
 		E805238C25ECD10000F962B1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E805238B25ECD10000F962B1 /* ProfileViewController.swift */; };
 		E805239125ECD59400F962B1 /* MarketCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E805239025ECD59400F962B1 /* MarketCoordinator.swift */; };
 		E805239625ECD5CF00F962B1 /* MarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E805239525ECD5CF00F962B1 /* MarketViewController.swift */; };
+		E82EB143260FC5E30092F045 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82EB142260FC5E30092F045 /* DetailViewController.swift */; };
 		E841C60025EFD9330032BCED /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E841C5FF25EFD9330032BCED /* ProfileService.swift */; };
 		E841C60625EFD98F0032BCED /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E841C60525EFD98F0032BCED /* ProductModel.swift */; };
 		E8490EA525F608B3007A7192 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8490EA425F608B3007A7192 /* ProductCell.swift */; };
@@ -24,6 +25,7 @@
 		E877CFDB2607743D0026984D /* MarketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E877CFDA2607743D0026984D /* MarketService.swift */; };
 		E877F11626092D940076C22A /* CategoryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E877F11526092D940076C22A /* CategoryCollectionView.swift */; };
 		E89591CD26033F74009820FA /* ProfileHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89591CC26033F74009820FA /* ProfileHeaderCell.swift */; };
+		E89DE9B7260F07E000003820 /* MarketPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89DE9B6260F07E000003820 /* MarketPresenter.swift */; };
 		E8B1279025EBC17500344E4B /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B1278F25EBC17500344E4B /* MainCoordinator.swift */; };
 		E8B1279525EBE54C00344E4B /* Storyboarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B1279425EBE54C00344E4B /* Storyboarded.swift */; };
 		E8B127A025EBF1F100344E4B /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B1279F25EBF1F100344E4B /* MainTabBarController.swift */; };
@@ -39,6 +41,7 @@
 		E8B4197425EBBC2F00C509CC /* Hey__SharingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B4197325EBBC2F00C509CC /* Hey__SharingUITests.swift */; };
 		E8B4198725EBBD1100C509CC /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B4198625EBBD1100C509CC /* Coordinator.swift */; };
 		E8C35B532600E63B00885DFB /* SignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C35B522600E63A00885DFB /* SignUpPresenter.swift */; };
+		E8CC9C4E260DC46A008E69FE /* ProductsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CC9C4D260DC46A008E69FE /* ProductsStorage.swift */; };
 		E8D01CE8260B8FBA00C72E4B /* MarketServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D01CE7260B8FBA00C72E4B /* MarketServiceMock.swift */; };
 		E8D3486625F835E40048BBB9 /* ProfilePresenterImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D3486525F835E40048BBB9 /* ProfilePresenterImplementation.swift */; };
 		E8DDD59F25FE98470031863B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DDD59E25FE98470031863B /* SignUpViewController.swift */; };
@@ -80,6 +83,7 @@
 		E805238B25ECD10000F962B1 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E805239025ECD59400F962B1 /* MarketCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketCoordinator.swift; sourceTree = "<group>"; };
 		E805239525ECD5CF00F962B1 /* MarketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketViewController.swift; sourceTree = "<group>"; };
+		E82EB142260FC5E30092F045 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		E841C5FF25EFD9330032BCED /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		E841C60525EFD98F0032BCED /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
 		E8490EA425F608B3007A7192 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
@@ -91,6 +95,7 @@
 		E877CFDA2607743D0026984D /* MarketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketService.swift; sourceTree = "<group>"; };
 		E877F11526092D940076C22A /* CategoryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionView.swift; sourceTree = "<group>"; };
 		E89591CC26033F74009820FA /* ProfileHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCell.swift; sourceTree = "<group>"; };
+		E89DE9B6260F07E000003820 /* MarketPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketPresenter.swift; sourceTree = "<group>"; };
 		E8B1278F25EBC17500344E4B /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		E8B1279425EBE54C00344E4B /* Storyboarded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboarded.swift; sourceTree = "<group>"; };
 		E8B1279F25EBF1F100344E4B /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -112,6 +117,7 @@
 		E8B4197525EBBC2F00C509CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8B4198625EBBD1100C509CC /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		E8C35B522600E63A00885DFB /* SignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPresenter.swift; sourceTree = "<group>"; };
+		E8CC9C4D260DC46A008E69FE /* ProductsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsStorage.swift; sourceTree = "<group>"; };
 		E8D01CE7260B8FBA00C72E4B /* MarketServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketServiceMock.swift; sourceTree = "<group>"; };
 		E8D3486525F835E40048BBB9 /* ProfilePresenterImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenterImplementation.swift; sourceTree = "<group>"; };
 		E8DDD59E25FE98470031863B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -175,6 +181,7 @@
 		E8078EB726024F52009CF161 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				E82EB141260FC5B90092F045 /* Detail */,
 				E851B22425F90B4F009332F9 /* Authorization */,
 				E8E0768925F923B800B91CD0 /* Market */,
 				E8078EC226025149009CF161 /* Profile */,
@@ -186,6 +193,7 @@
 		E8078EB826024F60009CF161 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E8CC9C4C260DC44B008E69FE /* Products */,
 				E8B4195A25EBBC2F00C509CC /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -275,6 +283,15 @@
 				E8B33EC7260B25A400ED41CD /* ColorExtension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		E82EB141260FC5B90092F045 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				E8CD0D8D26122EFC003C153E /* View */,
+				E82EB142260FC5E30092F045 /* DetailViewController.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		E841C5FE25EFD8DC0032BCED /* Services */ = {
@@ -393,11 +410,27 @@
 			path = Coordinators;
 			sourceTree = "<group>";
 		};
+		E8CC9C4C260DC44B008E69FE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E8CC9C4D260DC46A008E69FE /* ProductsStorage.swift */,
+			);
+			path = Products;
+			sourceTree = "<group>";
+		};
+		E8CD0D8D26122EFC003C153E /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		E8E0768925F923B800B91CD0 /* Market */ = {
 			isa = PBXGroup;
 			children = (
 				E8539EFE2607EC6200805AD4 /* View */,
 				E805239525ECD5CF00F962B1 /* MarketViewController.swift */,
+				E89DE9B6260F07E000003820 /* MarketPresenter.swift */,
 				E805239025ECD59400F962B1 /* MarketCoordinator.swift */,
 			);
 			path = Market;
@@ -698,6 +731,7 @@
 			files = (
 				E8B1279025EBC17500344E4B /* MainCoordinator.swift in Sources */,
 				E8E3E397260105F900CE1BDA /* AuthorizationService.swift in Sources */,
+				E89DE9B7260F07E000003820 /* MarketPresenter.swift in Sources */,
 				E8539F002607EC9600805AD4 /* ProductCollectionViewCell.swift in Sources */,
 				E877CFCA260751A00026984D /* RootCoordinator.swift in Sources */,
 				E8B127A025EBF1F100344E4B /* MainTabBarController.swift in Sources */,
@@ -722,11 +756,13 @@
 				E805238C25ECD10000F962B1 /* ProfileViewController.swift in Sources */,
 				E8DDD59F25FE98470031863B /* SignUpViewController.swift in Sources */,
 				E8B33EC8260B25A400ED41CD /* ColorExtension.swift in Sources */,
+				E82EB143260FC5E30092F045 /* DetailViewController.swift in Sources */,
 				E877CFD526075CAD0026984D /* ProductDetailModel.swift in Sources */,
 				E8B127A525EC1D2500344E4B /* ProfileCoordinator.swift in Sources */,
 				E841C60625EFD98F0032BCED /* ProductModel.swift in Sources */,
 				E8E3E39C26010DD600CE1BDA /* MockAuthorizationService.swift in Sources */,
 				E8B1279525EBE54C00344E4B /* Storyboarded.swift in Sources */,
+				E8CC9C4E260DC46A008E69FE /* ProductsStorage.swift in Sources */,
 				E841C60025EFD9330032BCED /* ProfileService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

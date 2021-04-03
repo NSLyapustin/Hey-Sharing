@@ -8,7 +8,9 @@
 import UIKit
 
 struct Category {
-	static var categories: [CategoryModel] = [CategoryModel(name: .vehicle,
+	static var categories: [CategoryModel] = [CategoryModel(name: .all,
+															backgroundImage: #imageLiteral(resourceName: "retroAll.jpg")),
+											  CategoryModel(name: .vehicle,
 															backgroundImage: #imageLiteral(resourceName: "retroCar")),
 											  CategoryModel(name: .appliances,
 															backgroundImage: #imageLiteral(resourceName: "retroAppliances.JPG")),
@@ -28,6 +30,7 @@ struct CategoryModel {
 }
 
 enum CategoryName: String, CaseIterable {
+	case all = "Все"
 	case vehicle = "Транспорт"
 	case appliances = "Бытовая техника"
 	case electronics = "Электроника"

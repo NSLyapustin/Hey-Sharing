@@ -55,7 +55,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
 class CategoryCollectionView: UICollectionReusableView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
 	static let identifier = "CategoryCollectionViewId"
-
+	var presenter: MarketViewControllerPresenter?
 	private var collectionView: UICollectionView?
 	private let cellId = "categoryCell"
 
@@ -82,12 +82,14 @@ class CategoryCollectionView: UICollectionReusableView, UICollectionViewDataSour
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? CategoryCollectionViewCell else { fatalError("Cannot deque cell") }
 		cell.set(category: Category.categories[indexPath.row])
-//		cell.backgroundColor = .lightGray
-//		cell.layer.cornerRadius = 3
 		return cell
 	}
 
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		return CGSize(width: 150, height: 40)
+	}
+
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		presenter?.setProductsByCategory(category: Category.categories[indexPath.row].name)
 	}
 }

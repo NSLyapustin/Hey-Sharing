@@ -8,12 +8,22 @@
 import UIKit
 
 class ProductCollectionViewCell: UICollectionViewCell {
+	var product: Product? {
+		didSet {
+
+			guard let product = product else { return }
+			productImageView.image = product.image
+			productNameLabel.text = product.name
+			productPriceLabel.text = "\(product.price) \(name(of: product.forPeriod))"
+		}
+	}
 	 
 
 	private let productImageView: UIImageView = {
-		let imgView = UIImageView(image: #imageLiteral(resourceName: "mac3"))
+		let imgView = UIImageView()
 		imgView.contentMode = .scaleAspectFill
 		imgView.clipsToBounds = true
+		imgView.layer.cornerRadius = 10
 		return imgView
 	}()
 
@@ -23,14 +33,12 @@ class ProductCollectionViewCell: UICollectionViewCell {
 		lbl.font = UIFont.systemFont(ofSize: 16)
 		lbl.numberOfLines = 2
 		lbl.textAlignment = .left
-		lbl.text = "Product"
 		return lbl
 	}()
 
 	private let productPriceLabel: UILabel = {
 		let lbl = UILabel()
 		lbl.textColor = .black
-		lbl.text = "Price"
 		lbl.font = UIFont.systemFont(ofSize: 14)
 		lbl.textAlignment = .left
 		return lbl

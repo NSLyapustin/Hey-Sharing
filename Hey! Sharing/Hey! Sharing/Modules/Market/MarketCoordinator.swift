@@ -8,17 +8,16 @@
 import UIKit
 
 class MarketCoordinator: Coordinator {
-    var navigationController: UINavigationController
+	var navigationController: UINavigationController
 
-    init(navigationController: UINavigationController = UINavigationController()) {
-        self.navigationController = navigationController
-        navigationController.navigationBar.prefersLargeTitles = true
+	init(navigationController: UINavigationController = UINavigationController()) {
+		self.navigationController = navigationController
+		navigationController.navigationBar.prefersLargeTitles = true
+		let presenter = MarketPresenterImplementation()
 
-        let viewController = MarketViewController.instantiate()
-        viewController.title = "Маркет"
-        viewController.tabBarItem = UITabBarItem(title: "Маркет", image: UIImage(named: "cart.fill"), tag: 0)
-        viewController.coordinator = self
+		let viewController = presenter.viewController()
 
-        navigationController.viewControllers = [viewController]
-    }
+		navigationController.viewControllers = [viewController]
+	}
+
 }

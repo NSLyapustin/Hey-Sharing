@@ -13,7 +13,7 @@ struct Product {
     var price: Int
     var forPeriod: Period
     var status: Status
-//	var category: Category
+	var category: CategoryName
 
     enum Status {
 		case awaitingСonfirmation

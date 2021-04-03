@@ -7,8 +7,8 @@
 
 import UIKit
 
-class ProfileHeaderCell: UITableViewCell {
-	let orangeBox = UIView()
+class ProfileHeaderView: UIView {
+	let purpleBox = UIView()
 	let whiteCircle = UIView()
 	let incomeView = UIView()
 	let incomeLabel = UILabel()
@@ -17,33 +17,29 @@ class ProfileHeaderCell: UITableViewCell {
 			incomeLabel.text = String(describing: income)
 		}
 	}
-	
 
-	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-		super.init(style: style, reuseIdentifier: reuseIdentifier)
+	override init(frame: CGRect) {
+		super.init(frame: frame)
 
-		addSubview(orangeBox)
+		addSubview(purpleBox)
 		addSubview(whiteCircle)
 
-		snp.makeConstraints { make in
-			make.height.equalTo(170)
-		}
-
-		orangeBox.backgroundColor = UIColor.themeColor
-		orangeBox.snp.makeConstraints { make in
+		purpleBox.backgroundColor = UIColor.themeColor
+		purpleBox.snp.makeConstraints { make in
 			make.top.equalToSuperview()
 			make.trailing.equalToSuperview()
 			make.leading.equalToSuperview()
 			make.bottom.equalToSuperview().multipliedBy(0.5)
 		}
 
-		whiteCircle.backgroundColor = .white
+		whiteCircle.backgroundColor = .red
 		whiteCircle.snp.makeConstraints { make in
-			make.width.equalToSuperview().dividedBy(3)
-			make.height.equalTo(snp.width)
+			make.width.equalToSuperview().dividedBy(2.5)
+			make.height.equalTo(whiteCircle.snp.width)
 			make.centerX.equalToSuperview()
-			make.centerY.equalTo(orangeBox.snp.bottom)
+			make.centerY.equalTo(purpleBox.snp.bottom)
 		}
+		whiteCircle.layer.cornerRadius = whiteCircle.frame.height / 2
 	}
 
 	required init?(coder: NSCoder) {
