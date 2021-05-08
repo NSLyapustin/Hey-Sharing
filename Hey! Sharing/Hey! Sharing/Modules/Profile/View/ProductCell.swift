@@ -50,7 +50,7 @@ class ProductCell: UITableViewCell {
         return lbl
     }()
 
-    private func name(of period: Product.Period) -> String {
+    private func name(of period: Period) -> String {
 		switch period {
 		case .day:
 			return "в день"
@@ -61,7 +61,7 @@ class ProductCell: UITableViewCell {
         }
     }
 
-    private func name(of status: Product.Status) -> String {
+    private func name(of status: Status) -> String {
 		switch status {
 		case .awaitingСonfirmation:
 			return "Ожидает"

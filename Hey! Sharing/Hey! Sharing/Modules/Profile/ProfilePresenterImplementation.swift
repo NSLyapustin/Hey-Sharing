@@ -10,7 +10,7 @@ import UIKit
 class ProfilePresenterImplementation: ProfilePresenter {
 
     private let profileService: ProfileService = ProfileServiceMock()
-    private var view: ProfileViewController?
+    private weak var view: ProfileViewController?
     var products: [Product] = []
     var coordinator: ProfileCoordinator?
     var moveToDetail: ((String) -> Void)?

@@ -18,8 +18,8 @@ class RootCoordinator {
 		if isAuth() {
 			showTabBarFlow()
 		} else {
-//			authorizationFlow()
-			showTabBarFlow()
+			showAuthorizationFlow()
+//			showTabBarFlow()
 		}
 	}
 

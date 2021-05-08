@@ -8,7 +8,7 @@
 import UIKit
 
 class SignInPresenter {
-	private let authorizationService = MockAuthorizationService()
+	private let authorizationService = RestAuthorizationService()
 	private weak var view: SignInViewController?
 	var coordinator: AuthorizationCoordinator?
 	var moveToSignUp: (() -> Void)?

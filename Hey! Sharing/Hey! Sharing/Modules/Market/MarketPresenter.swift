@@ -9,8 +9,8 @@ import UIKit
 
 class MarketPresenterImplementation: MarketViewControllerPresenter {
 
-	private let marketService: MarketService = MarketServiceMock()
-	private var view: MarketViewController?
+	private let marketService: MarketService = RestMarketService()
+	private weak var view: MarketViewController?
 	var products: [Product] = []
 	var coordinator: MarketCoordinator?
 	var moveToDetail: ((String) -> Void)?
@@ -29,11 +29,14 @@ class MarketPresenterImplementation: MarketViewControllerPresenter {
 		marketService.getRecommendations { result in
 			switch result {
 			case .success(let products):
+                self.products = products
 				self.view?.setProducts(products: products)
 			case .failure(let err):
 				print(err)
 			}
 		}
+
+        view?.productCollectionView?.refreshControl?.endRefreshing()
 	}
 
 	func setProductsByCategory(category: CategoryName) {
@@ -46,4 +49,8 @@ class MarketPresenterImplementation: MarketViewControllerPresenter {
 			}
 		}
 	}
+
+    func moveToDetailViewController(forProductWith id: Int) {
+        coordinator?.detailViewController(with: products[id].id)
+    }
 }

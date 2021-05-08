@@ -7,9 +7,10 @@
 
 import UIKit
 
-protocol MarketViewControllerPresenter {
+protocol MarketViewControllerPresenter: AnyObject {
 	func setProducts()
 	func setProductsByCategory(category: CategoryName)
+    func moveToDetailViewController(forProductWith id: Int)
 }
 
 class MarketViewController: UIViewController {
@@ -18,7 +19,7 @@ class MarketViewController: UIViewController {
 	var products: [Product]?
     weak var coordinator: MarketCoordinator?
 	let searchController = UISearchController(searchResultsController: nil)
-	private var productCollectionView: UICollectionView?
+	var productCollectionView: UICollectionView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +60,8 @@ class MarketViewController: UIViewController {
 			make.trailing.equalToSuperview().inset(5)
 		}
 		productsCollectionView.backgroundColor = .white
+        productCollectionView?.refreshControl = UIRefreshControl()
+        productCollectionView?.refreshControl?.addTarget(self, action: #selector(refreshData), for: .valueChanged)
 	}
 
 	func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -71,7 +74,9 @@ class MarketViewController: UIViewController {
 		return header
 	}
 
-	
+    @objc private func refreshData() {
+        presenter?.setProducts()
+    }
 }
 
 extension MarketViewController: UISearchResultsUpdating {
@@ -105,6 +110,6 @@ extension MarketViewController: UICollectionViewDelegateFlowLayout {
 extension MarketViewController: UICollectionViewDelegate {
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		productCollectionView?.deselectItem(at: indexPath, animated: true)
-		print("Product tapped")
+        presenter?.moveToDetailViewController(forProductWith: indexPath.row)
 	}
 }

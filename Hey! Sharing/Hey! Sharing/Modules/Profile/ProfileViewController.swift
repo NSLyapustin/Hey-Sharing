@@ -30,6 +30,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
 		tableView.delegate = self
 		tableView.dataSource = self
 		tableView.register(ProductCell.self, forCellReuseIdentifier: productCellId)
+		#warning("re")
 		tableView.tableHeaderView = ProfileHeaderView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 170))
 		tableView.rowHeight = UITableView.automaticDimension
 		configure()
@@ -39,7 +40,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
 		self.products = products
 		tableView.reloadData()
     }
-
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		products.count
@@ -62,4 +62,10 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
 			make.top.equalTo(view.snp.top)
 		}
     }
+
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		tableView.deselectRow(at: indexPath, animated: true)
+		let detailViewController = DetailViewController()
+		navigationController?.pushViewController(detailViewController, animated: true)
+	}
 }

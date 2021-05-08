@@ -14,10 +14,16 @@ class MarketCoordinator: Coordinator {
 		self.navigationController = navigationController
 		navigationController.navigationBar.prefersLargeTitles = true
 		let presenter = MarketPresenterImplementation()
-
+        presenter.coordinator = self
 		let viewController = presenter.viewController()
 
 		navigationController.viewControllers = [viewController]
 	}
 
+    func detailViewController(with id: Int) {
+        let presenter = DetailPresenter()
+        presenter.productId = id
+        let viewController = presenter.viewController()
+        navigationController.pushViewController(viewController, animated: true)
+    }
 }

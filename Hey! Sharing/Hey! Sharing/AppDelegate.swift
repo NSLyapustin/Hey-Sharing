@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import IQKeyboardManager
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+		IQKeyboardManager.shared().isEnabled = true
 		window = UIWindow(frame: UIScreen.main.bounds)
 		guard let window = window else { fatalError("Try to restart an app") }
 		let rootCoordinator = RootCoordinator(window: window)

@@ -10,7 +10,6 @@ import UIKit
 class ProductCollectionViewCell: UICollectionViewCell {
 	var product: Product? {
 		didSet {
-
 			guard let product = product else { return }
 			productImageView.image = product.image
 			productNameLabel.text = product.name
@@ -50,7 +49,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
 		return btn
 	}()
 
-	private func name(of period: Product.Period) -> String {
+	private func name(of period: Period) -> String {
 		switch period {
 		case .day:
 			return "день"
@@ -61,7 +60,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
 		}
 	}
 
-	private func name(of status: Product.Status) -> String {
+	private func name(of status: Status) -> String {
 		switch status {
 		case .awaitingСonfirmation:
 			return "Ожидает"
@@ -99,14 +98,15 @@ class ProductCollectionViewCell: UICollectionViewCell {
 
 		addSubview(productNameLabel)
 		productNameLabel.snp.makeConstraints { make in
+            make.top.equalTo(productImageView.snp.bottom).offset(7.5)
 			make.leading.equalToSuperview().inset(5)
 			make.trailing.lessThanOrEqualTo(markAsFavoriteButton.snp.leading)
-			make.centerY.equalTo(markAsFavoriteButton)
+//			make.centerY.equalTo(markAsFavoriteButton)
 		}
 
 		addSubview(productPriceLabel)
 		productPriceLabel.snp.makeConstraints { make in
-			make.top.equalTo(productNameLabel.snp.bottom).offset(5)
+			make.bottom.equalToSuperview().inset(5)
 			make.leading.equalToSuperview().inset(5)
 			make.trailing.equalToSuperview().inset(5)
 		}

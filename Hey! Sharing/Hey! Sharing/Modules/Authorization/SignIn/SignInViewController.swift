@@ -114,8 +114,4 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
 		guard let login = loginTextField.text, let password = passwordTextField.text else { return }
 		presenter?.signIn(login: login, password: password)
 	}
-
-	deinit {
-		print("deinit succesful")
-	}
 }
