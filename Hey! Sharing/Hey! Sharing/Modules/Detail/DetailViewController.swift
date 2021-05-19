@@ -40,7 +40,16 @@ class DetailViewController: UIViewController {
         productImageView.image = product.image
         nameLabel.text = product.name
         priceLabel.text = "\(product.price) P"
-        statusLabel.text = "Mock"
+        statusLabel.text = {
+            switch product.status {
+            case .awaitingСonfirmation:
+                return "Ожидает подтверждения по адресу:"
+            case .atTheReceptionPoint:
+                return "Находится в пункте по адресу:"
+            case .atTheTenant:
+                return "В аренде, будет по адресу:"
+            }
+        }()
         descriptionLabel.text = product.description
         addressLabel.text = product.address
         countOfViewsLabel.text = "\(product.countOfViews)"

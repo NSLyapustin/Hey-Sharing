@@ -25,21 +25,34 @@ class RestAddingService: AddingService {
 			completion(.failure(.emptyFields))
 			return
 		}
-        let requestProduct = RequestProductModel(product: product)
+        guard let token = keychain["token"] else { return }
+        var headers: HTTPHeaders = ["Content-type" : "multipart/form-data", "Authorization": token]
+        guard let data = product.image.jpegData(compressionQuality: 0.2) else { return }
 
-		guard let token = keychain["token"] else { return }
-		let headers: HTTPHeaders = ["Authorization": token]
-        AF.request("http://localhost:8080/product/save", method: .post, parameters: requestProduct, encoder: JSONParameterEncoder.default, headers: headers).validate(statusCode: 200..<300).response { response in
-			switch response.result {
-			case .success( _):
-				completion(.success(true))
-				return
-			case .failure(let error):
-                print(error)
-				completion(.failure(.badRequest))
-				return
-			}
-		}
+        let multipartFormData = MultipartFormData()
+        multipartFormData.append(data, withName: "image_file", fileName: "image.jpeg", mimeType: "image/jpeg")
+
+        AF.upload(multipartFormData: multipartFormData, to: "http://localhost:8080/product/saveImage", headers: headers).responseDecodable(of:[String : String].self) { response in
+            switch response.result {
+            case .success(let dictionary):
+                let requestProduct = RequestProductModel(product: product, with: dictionary["filePath"] ?? "")
+                headers = ["Authorization": token]
+                AF.request("http://localhost:8080/product/save", method: .post, parameters: requestProduct, encoder: JSONParameterEncoder.default, headers: headers).validate(statusCode: 200..<300).response { response in
+                    switch response.result {
+                    case .success( _):
+                        completion(.success(true))
+                        return
+                    case .failure(let error):
+                        print(error)
+                        completion(.failure(.badRequest))
+                        return
+                    }
+                }
+
+            case .failure(let error):
+                debugPrint(error)
+            }
+        }
 	}
 
 	private func isFieldsEmpty(name: String, price: String, description: String, period: String, category: String, address: String) -> Bool {

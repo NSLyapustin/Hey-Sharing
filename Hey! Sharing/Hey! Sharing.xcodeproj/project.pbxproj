@@ -350,7 +350,6 @@
 		E82EB141260FC5B90092F045 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				E8CD0D8D26122EFC003C153E /* View */,
 				E82EB142260FC5E30092F045 /* DetailViewController.swift */,
 				E84F81FD2646863B00C587F1 /* DetailPresenter.swift */,
 			);
@@ -602,13 +601,6 @@
 				E8CC9C4D260DC46A008E69FE /* ProductsStorage.swift */,
 			);
 			path = Products;
-			sourceTree = "<group>";
-		};
-		E8CD0D8D26122EFC003C153E /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		E8E0768925F923B800B91CD0 /* Market */ = {

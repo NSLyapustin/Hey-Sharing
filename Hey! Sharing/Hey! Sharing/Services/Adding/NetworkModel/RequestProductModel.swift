@@ -16,9 +16,9 @@ struct RequestProductModel: Encodable {
     let description: String
     let address: String
 
-    init(product: ProductAddingDto) {
+    init(product: ProductAddingDto, with imageName: String) {
         self.name = product.name
-        self.image = product.image.toString() ?? ""
+        self.image = imageName
         self.price = Int(product.price) ?? 0
         self.period = RequestProductModel.nameOf(period: product.forPeriod)
         self.category = RequestProductModel.nameOf(category: product.category)

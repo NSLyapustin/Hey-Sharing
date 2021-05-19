@@ -13,7 +13,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
 			guard let product = product else { return }
 			productImageView.image = product.image
 			productNameLabel.text = product.name
-			productPriceLabel.text = "\(product.price) \(name(of: product.forPeriod))"
+			productPriceLabel.text = "\(product.price)Р \(name(of: product.forPeriod))"
 		}
 	}
 
@@ -54,11 +54,11 @@ class ProductCollectionViewCell: UICollectionViewCell {
 	private func name(of period: Period) -> String {
 		switch period {
 		case .day:
-			return "день"
+			return "в день"
 		case .week:
-			return "неделя"
+			return "в неделю"
 		case .month:
-			return "месяц"
+			return "в месяц"
 		}
 	}
 
