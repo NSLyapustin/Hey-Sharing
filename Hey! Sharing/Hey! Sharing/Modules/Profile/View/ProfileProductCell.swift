@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ProductCell: UITableViewCell {
+class ProfileProductCell: UITableViewCell {
 
     var product: Product? {
         didSet {
@@ -21,7 +21,7 @@ class ProductCell: UITableViewCell {
     }
 
     private let productImageView: UIImageView = {
-        let imgView = UIImageView(image: #imageLiteral(resourceName: "PlaceholderForProducts.png"))
+        let imgView = UIImageView(image: #imageLiteral(resourceName: "picturePlaceholder"))
         imgView.contentMode = .scaleAspectFill
 		imgView.clipsToBounds = true
         return imgView

@@ -21,6 +21,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     let tableView = UITableView()
     let productCellId = "ProductCellId"
 	let headerCellId = "HeaderCellId"
+    var header = ProfileHeaderView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 170))
 
     var products: [Product] = []
 
@@ -29,16 +30,20 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
 
 		tableView.delegate = self
 		tableView.dataSource = self
-		tableView.register(ProductCell.self, forCellReuseIdentifier: productCellId)
+		tableView.register(ProfileProductCell.self, forCellReuseIdentifier: productCellId)
 		#warning("re")
-		tableView.tableHeaderView = ProfileHeaderView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 170))
+		tableView.tableHeaderView = header
 		tableView.rowHeight = UITableView.automaticDimension
 		configure()
     }
 
-    func set(products: [Product]) {
+    func setProducts(products: [Product]) {
 		self.products = products
 		tableView.reloadData()
+    }
+
+    func setIncome(income: Int) {
+        header.income = income
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -46,7 +51,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		guard let cell = tableView.dequeueReusableCell(withIdentifier: productCellId, for: indexPath) as? ProductCell else { fatalError("Cannot deque cell") }
+		guard let cell = tableView.dequeueReusableCell(withIdentifier: productCellId, for: indexPath) as? ProfileProductCell else { fatalError("Cannot deque cell") }
 		cell.product = products[indexPath.row]
 		return cell
     }

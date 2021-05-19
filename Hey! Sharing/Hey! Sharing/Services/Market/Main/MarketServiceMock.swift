@@ -8,6 +8,10 @@
 import UIKit
 
 class MarketServiceMock: MarketService {
+    func addToFavorites(id: Int, completion: @escaping (Result<Bool, Error>) -> ()) {
+        completion(.success(true))
+    }
+
 
 	func getRecommendations(completion: @escaping ((Result<[Product], MarketError>)) -> ()) {
 		completion(.success(ProductsStorage.allProducts))

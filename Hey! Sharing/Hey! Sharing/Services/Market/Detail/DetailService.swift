@@ -13,4 +13,5 @@ protocol DetailService {
 
 enum DetailError: Error {
     case networkError
+    case badRequest
 }

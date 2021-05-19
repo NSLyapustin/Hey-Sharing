@@ -22,7 +22,7 @@ class RestDetailService: DetailService {
                 return completion(.success(product))
             case .failure(let error):
                 print(error)
-                completion(.failure(.networkError))
+                completion(.failure(.badRequest))
             }
         }
     }

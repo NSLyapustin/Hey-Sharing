@@ -14,12 +14,14 @@ class RestAddingService: AddingService {
 
 	func saveAd(product: ProductAddingDto, completion: @escaping (Result<Bool, AddingError>) -> ()) {
 
-		if isFieldsEmpty(name: product.name,
-						 price: product.price,
-						 description: product.description,
-						 period: product.forPeriod,
-						 category: product.category,
-						 address: product.address) {
+		if isFieldsEmpty(
+            name: product.name,
+            price: product.price,
+            description: product.description,
+            period: product.forPeriod,
+            category: product.category,
+            address: product.address
+        ) {
 			completion(.failure(.emptyFields))
 			return
 		}
@@ -42,7 +44,8 @@ class RestAddingService: AddingService {
 
 	private func isFieldsEmpty(name: String, price: String, description: String, period: String, category: String, address: String) -> Bool {
 		if name.isEmpty || category.isEmpty ||
-			period.isEmpty || address.isEmpty || description.isEmpty || price.isEmpty {
+			period.isEmpty || address.isEmpty ||
+            description.isEmpty || price.isEmpty {
 			return true
 		}
 		return false

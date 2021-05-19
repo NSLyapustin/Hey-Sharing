@@ -9,14 +9,30 @@ import UIKit
 
 class ProfilePresenterImplementation: ProfilePresenter {
 
-    private let profileService: ProfileService = ProfileServiceMock()
+    private let profileService: ProfileService = RestProfileService()
     private weak var view: ProfileViewController?
     var products: [Product] = []
     var coordinator: ProfileCoordinator?
     var moveToDetail: ((String) -> Void)?
 
     func loadData() {
-		view?.set(products: profileService.getUserProducts())
+        profileService.getUserProducts { result in
+            switch result {
+            case .success(let products):
+                self.view?.setProducts(products: products)
+            case .failure(let err):
+                print(err)
+            }
+        }
+
+        profileService.getUserIncome { result in
+            switch result {
+            case .success(let income):
+                self.view?.setIncome(income: income)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 
     func viewController() -> UIViewController {

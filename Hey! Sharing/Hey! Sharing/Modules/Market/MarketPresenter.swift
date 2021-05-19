@@ -13,7 +13,6 @@ class MarketPresenterImplementation: MarketViewControllerPresenter {
 	private weak var view: MarketViewController?
 	var products: [Product] = []
 	var coordinator: MarketCoordinator?
-	var moveToDetail: ((String) -> Void)?
 
 	func viewController() -> UIViewController {
 		let controller = MarketViewController()
@@ -49,6 +48,17 @@ class MarketPresenterImplementation: MarketViewControllerPresenter {
 			}
 		}
 	}
+
+    func addToFavorite(id: Int) {
+        marketService.addToFavorites(id: id) { result in
+            switch result {
+            case .success( _):
+                print("success")
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 
     func moveToDetailViewController(forProductWith id: Int) {
         coordinator?.detailViewController(with: products[id].id)

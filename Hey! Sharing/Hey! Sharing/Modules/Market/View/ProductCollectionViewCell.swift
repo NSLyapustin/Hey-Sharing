@@ -16,6 +16,8 @@ class ProductCollectionViewCell: UICollectionViewCell {
 			productPriceLabel.text = "\(product.price) \(name(of: product.forPeriod))"
 		}
 	}
+
+    var addToFavorite: (() -> ())?
 	 
 
 	private let productImageView: UIImageView = {
@@ -95,6 +97,8 @@ class ProductCollectionViewCell: UICollectionViewCell {
 			make.trailing.equalToSuperview().inset(5)
 			make.top.equalTo(productImageView.snp.bottom)
 		}
+        let tap = UITapGestureRecognizer(target: self, action: #selector(favoriteButtonTapped))
+        markAsFavoriteButton.addGestureRecognizer(tap)
 
 		addSubview(productNameLabel)
 		productNameLabel.snp.makeConstraints { make in
@@ -111,4 +115,8 @@ class ProductCollectionViewCell: UICollectionViewCell {
 			make.trailing.equalToSuperview().inset(5)
 		}
 	}
+
+    @objc private func favoriteButtonTapped() {
+        addToFavorite?()
+    }
 }

@@ -8,6 +8,11 @@
 import UIKit
 
 protocol ProfileService {
-    func getUserProducts() -> [Product]
-    func getUserIncome() -> Double
+    func getUserProducts(completion: @escaping (Result<[Product], Error>) -> ())
+    func getUserIncome(completion: @escaping (Result<Int, Error>) -> ())
+}
+
+enum ProfileError: Error {
+    case nothingWasFound
+    case badRequest
 }

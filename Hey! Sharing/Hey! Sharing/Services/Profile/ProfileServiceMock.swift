@@ -8,11 +8,11 @@
 import UIKit
 
 class ProfileServiceMock: ProfileService {
-    func getUserIncome() -> Double {
-        return 941
+    func getUserProducts(completion: @escaping (Result<[Product], Error>) -> ()) {
+        completion(.success(ProductsStorage.allProducts))
     }
 
-    func getUserProducts() -> [Product] {
-		ProductsStorage.allProducts
+    func getUserIncome(completion: @escaping (Result<Int, Error>) -> ()) {
+        completion(.success(123))
     }
 }

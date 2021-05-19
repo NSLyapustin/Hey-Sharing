@@ -11,12 +11,13 @@ protocol MarketViewControllerPresenter: AnyObject {
 	func setProducts()
 	func setProductsByCategory(category: CategoryName)
     func moveToDetailViewController(forProductWith id: Int)
+    func addToFavorite(id: Int)
 }
 
 class MarketViewController: UIViewController {
 
 	var presenter: MarketViewControllerPresenter?
-	var products: [Product]?
+	var products: [Product] = []
     weak var coordinator: MarketCoordinator?
 	let searchController = UISearchController(searchResultsController: nil)
 	var productCollectionView: UICollectionView?
@@ -86,12 +87,15 @@ extension MarketViewController: UISearchResultsUpdating {
 
 extension MarketViewController: UICollectionViewDataSource {
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		products?.count ?? 0
+		products.count
 	}
 
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as? ProductCollectionViewCell else { return ProductCollectionViewCell() }
-		cell.product = products?[indexPath.row]
+		cell.product = products[indexPath.row]
+        cell.addToFavorite = {
+            self.presenter?.addToFavorite(id: self.products[indexPath.row].id)
+        }
 		return cell
 	}
 }
@@ -102,7 +106,8 @@ extension MarketViewController: UICollectionViewDelegateFlowLayout {
 	}
 
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-		CGSize(width: self.view.frame.width / 2 - 11,
+        #warning("content size in cell")
+		return CGSize(width: self.view.frame.width / 2 - 11,
 			   height: self.view.frame.width / 2 - 5)
 	}
 }

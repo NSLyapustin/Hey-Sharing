@@ -10,9 +10,11 @@ import UIKit
 protocol MarketService {
 	func getRecommendations(completion: @escaping ((Result<[Product], MarketError>)) -> ())
 	func getRecommendationsInCategory(category: CategoryName, completion: @escaping ((Result<[Product], MarketError>)) -> ())
+    func addToFavorites(id: Int, completion: @escaping (Result<Bool, Error>) -> ())
 }
 
 enum MarketError: Error {
 	case nothingWasFound
+    case badRequest
 }
 
