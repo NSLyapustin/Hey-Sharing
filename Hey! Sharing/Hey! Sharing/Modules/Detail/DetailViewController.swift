@@ -37,7 +37,8 @@ class DetailViewController: UIViewController {
 	}
 
     func set(product: ProductDetailDto) {
-        productImageView.image = product.image
+        let url = URL(string: "http://localhost:8080/image/\(product.imageName)")
+        productImageView.kf.setImage(with: url)
         nameLabel.text = product.name
         priceLabel.text = "\(product.price) P"
         statusLabel.text = {

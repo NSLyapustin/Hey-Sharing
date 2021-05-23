@@ -10,8 +10,20 @@ import Alamofire
 import KeychainAccess
 
 class RestAuthorizationService: AuthorizationService {
-
-	let keychain = Keychain(service: "http://localhost:8080/signIn")
+    func checkAuth(completion: @escaping ((Result<Bool, Error>) -> ())) {
+        let token = DefaultNetworkService.token
+        let headers: HTTPHeaders = ["Authorization": token]
+        AF.request(DefaultNetworkService.baseUrl + "product/getAll", method: .get, headers: headers).validate(statusCode: 200...299).response { response in
+            switch response.result {
+            case .success( _):
+                completion(.success(true))
+                return
+            case .failure(let error):
+                completion(.failure(error))
+                return
+            }
+        }
+    }
 
 	func signIn(login: String, password: String, completion: @escaping ((Result<Bool, SignInError>) -> Void)) {
 		if (login.isEmpty || password.isEmpty) {
@@ -19,10 +31,13 @@ class RestAuthorizationService: AuthorizationService {
 			return
 		}
 		let parameters = ["username": login, "password": password]
-		AF.request("http://localhost:8080/signIn", method: .post, parameters: parameters, encoder: JSONParameterEncoder.default).validate(statusCode: 200..<300).responseDecodable(of: Dictionary<String, String>.self) { response in
+		AF.request(DefaultNetworkService.baseUrl + "signIn", method: .post, parameters: parameters, encoder: JSONParameterEncoder.default).validate(statusCode: 200..<300).responseDecodable(of: Dictionary<String, String>.self) { response in
 			switch response.result {
 			case .success:
-				self.keychain["token"] = response.value?["token"]
+                guard let token = response.value?["token"] else {
+                    return
+                }
+                DefaultNetworkService.save(token: token)
 				completion(.success(true))
 				return
 			case .failure:
@@ -42,7 +57,7 @@ class RestAuthorizationService: AuthorizationService {
 			return
 		}
 		let parameters = ["username": login, "password": password]
-		AF.request("http://localhost:8080/signUp", method: .post, parameters: parameters, encoder: JSONParameterEncoder.default).validate(statusCode: 200..<300).responseJSON { response in
+        AF.request(DefaultNetworkService.baseUrl + "signUp", method: .post, parameters: parameters, encoder: JSONParameterEncoder.default).validate(statusCode: 200..<300).responseJSON { response in
 			switch response.result {
 			case .success( _):
 				completion(.success(true))

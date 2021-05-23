@@ -11,7 +11,7 @@ target 'Hey! Sharing' do
   pod 'Alamofire', '~> 5.2'
   pod 'Kingfisher', '~> 6.0'
   pod 'IQKeyboardManager'
-  pod 'Moya', '~> 14.0'
+  pod 'ReachabilitySwift'
 
   target 'Hey! SharingTests' do
     inherit! :search_paths

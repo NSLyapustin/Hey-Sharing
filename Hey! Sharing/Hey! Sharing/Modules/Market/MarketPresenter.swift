@@ -14,6 +14,15 @@ class MarketPresenterImplementation: MarketViewControllerPresenter {
 	var products: [Product] = []
 	var coordinator: MarketCoordinator?
 
+//    init(viewController: MarketViewController, coordinator: MarketCoordinator) {
+//        self.view = viewController
+//        self.coordinator = coordinator
+//    }
+
+    func viewDidLoad() {
+        setProducts()
+    }
+
 	func viewController() -> UIViewController {
 		let controller = MarketViewController()
 		controller.presenter = self

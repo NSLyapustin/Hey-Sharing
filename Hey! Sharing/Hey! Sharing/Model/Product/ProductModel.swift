@@ -10,16 +10,16 @@ import UIKit
 struct Product {
     var id: Int
 	var name: String
-    var image: UIImage
+    var imageName: String
     var price: Int
     var forPeriod: Period
     var status: Status
 	var category: CategoryName
 
-    init(id: Int, name: String, image: UIImage, price: Int, forPeriod: Period, status: Status, category: CategoryName) {
+    init(id: Int, name: String, imageName: String, price: Int, forPeriod: Period, status: Status, category: CategoryName) {
         self.id = id
         self.name = name
-        self.image = image
+        self.imageName = imageName
         self.price = price
         self.forPeriod = forPeriod
         self.status = status
@@ -30,10 +30,10 @@ struct Product {
         return Product(
             id: networkProduct.id,
             name: networkProduct.name,
-            image: getImage(from: networkProduct.image),
+            imageName: networkProduct.image,
             price: networkProduct.price,
             forPeriod: period(by: networkProduct.period),
-            status: .awaitingСonfirmation,
+            status: status(by: networkProduct.status),
             category: category(by: networkProduct.category)
         )
     }

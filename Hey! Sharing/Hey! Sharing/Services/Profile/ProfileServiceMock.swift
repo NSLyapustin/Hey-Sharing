@@ -9,7 +9,7 @@ import UIKit
 
 class ProfileServiceMock: ProfileService {
     func getUserProducts(completion: @escaping (Result<[Product], Error>) -> ()) {
-        completion(.success(ProductsStorage.allProducts))
+//        completion(.success(ProductsStorage.allProducts))
     }
 
     func getUserIncome(completion: @escaping (Result<Int, Error>) -> ()) {

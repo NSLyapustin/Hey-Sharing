@@ -8,6 +8,7 @@
 import UIKit
 
 protocol MarketViewControllerPresenter: AnyObject {
+    func viewDidLoad()
 	func setProducts()
 	func setProductsByCategory(category: CategoryName)
     func moveToDetailViewController(forProductWith id: Int)
@@ -24,14 +25,8 @@ class MarketViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-		searchController.searchResultsUpdater = self
-		searchController.obscuresBackgroundDuringPresentation = false
-		searchController.searchBar.placeholder = "Найти"
-		navigationItem.searchController = searchController
-		definesPresentationContext = true
-		
 		setup()
+//        presenter?.viewDidLoad()
     }
 
 	func setProducts(products: [Product]) {
@@ -63,6 +58,12 @@ class MarketViewController: UIViewController {
 		productsCollectionView.backgroundColor = .white
         productCollectionView?.refreshControl = UIRefreshControl()
         productCollectionView?.refreshControl?.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Найти"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
 	}
 
 	func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

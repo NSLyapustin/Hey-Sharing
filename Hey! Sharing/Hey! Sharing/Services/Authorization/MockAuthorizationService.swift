@@ -8,6 +8,10 @@
 import UIKit
 
 class MockAuthorizationService: AuthorizationService {
+    func checkAuth(completion: @escaping ((Result<Bool, Error>) -> ())) {
+        //
+    }
+
 	func signIn(login: String, password: String, completion: @escaping ((Result<Bool, SignInError>) -> Void)) {
 		if (login.isEmpty || password.isEmpty) {
 			completion(.failure(.emptyFields))

@@ -10,6 +10,7 @@ import Foundation
 protocol AuthorizationService {
 	func signIn(login: String, password: String, completion: @escaping ((Result<Bool, SignInError>) -> Void))
 	func signUp(login: String, password: String, confirmPassword: String, completion: @escaping ((Result<Bool, SignUpError>) -> Void))
+    func checkAuth(completion: @escaping ((Result<Bool, Error>) -> ()))
 }
 
 enum SignInError: Error {

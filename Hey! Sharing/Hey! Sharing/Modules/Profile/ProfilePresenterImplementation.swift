@@ -33,6 +33,8 @@ class ProfilePresenterImplementation: ProfilePresenter {
                 print(error)
             }
         }
+
+        view?.tableView.refreshControl?.endRefreshing()
     }
 
     func viewController() -> UIViewController {

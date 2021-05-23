@@ -19,7 +19,7 @@ class CreatingAdPresenter {
 		controller.presenter = self
 		view = controller
 		controller.title = "Добавление"
-		controller.tabBarItem = UITabBarItem(title: "Добавление", image: UIImage(named: "cart.fill"), tag: 0)
+		controller.tabBarItem = UITabBarItem(title: "Добавление", image: UIImage(named: "plus.app"), tag: 0)
 		navigationController?.pushViewController(controller, animated: true)
 		return controller
 	}

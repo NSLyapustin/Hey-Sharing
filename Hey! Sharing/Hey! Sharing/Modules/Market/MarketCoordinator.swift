@@ -16,6 +16,7 @@ class MarketCoordinator: Coordinator {
 		let presenter = MarketPresenterImplementation()
         presenter.coordinator = self
 		let viewController = presenter.viewController()
+//        let viewController = MarketFactory.marketViewController(from: self)
 
 		navigationController.viewControllers = [viewController]
 	}

@@ -16,7 +16,7 @@ class RestProfileService: ProfileService {
     func getUserProducts(completion: @escaping (Result<[Product], Error>) -> ()) {
         guard let token = keychain["token"] else { return }
         let headers: HTTPHeaders = ["Authorization": token]
-        AF.request("http://localhost:8080/profile/products", method: .get, headers: headers).validate(statusCode: 200...299).responseDecodable(of: [ResponseProductDto].self) { response in
+        AF.request(DefaultNetworkService.baseUrl + "profile/products", method: .get, headers: headers).validate(statusCode: 200...299).responseDecodable(of: [ResponseProductDto].self) { response in
             switch response.result {
             case .success(let products):
                 let products = products.map { Product.from(networkProduct: $0) }
@@ -31,7 +31,7 @@ class RestProfileService: ProfileService {
     func getUserIncome(completion: @escaping (Result<Int, Error>) -> ()) {
         guard let token = keychain["token"] else { return }
         let headers: HTTPHeaders = ["Authorization": token]
-        AF.request("http://localhost:8080/profile/income", method: .get, headers: headers).validate(statusCode: 200...299).responseDecodable(of: Int.self) { response in
+        AF.request(DefaultNetworkService.baseUrl + "profile/income", method: .get, headers: headers).validate(statusCode: 200...299).responseDecodable(of: Int.self) { response in
             switch response.result {
             case .success(let income):
                 return completion(.success(income))

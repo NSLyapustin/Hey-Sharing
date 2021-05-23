@@ -6,25 +6,32 @@
 //
 
 import UIKit
+import Network
+import Reachability
 
 class RootCoordinator {
+
 	var window: UIWindow
+    let authorizationService: AuthorizationService = RestAuthorizationService()
 
 	init(window: UIWindow) {
 		self.window = window
 	}
 
 	func start() {
-		if isAuth() {
-			showTabBarFlow()
-		} else {
-			showAuthorizationFlow()
-//			showTabBarFlow()
-		}
-	}
+        let reachability = try! Reachability()
+        if reachability.connection == .unavailable {
+            showTabBarFlow()
+        }
 
-	func isAuth() -> Bool {
-		UserDefaults.standard.bool(forKey: "authorized")
+        authorizationService.checkAuth { result in
+            switch result {
+            case .success( _):
+                self.showTabBarFlow()
+            case .failure( _):
+                self.showAuthorizationFlow()
+            }
+        }
 	}
 
 	func showAuthorizationFlow() {
@@ -32,9 +39,6 @@ class RootCoordinator {
 		authorizationCoordinator.authorizationIsFinished = {
 			self.showTabBarFlow()
 		}
-		#warning("todo")
-//		let controller: SignInViewController = SignInViewController(presenter: SignInPresenter())
-//		window.rootViewController = controller
 		window.rootViewController = authorizationCoordinator.signInViewController()
 		window.makeKeyAndVisible()
 	}

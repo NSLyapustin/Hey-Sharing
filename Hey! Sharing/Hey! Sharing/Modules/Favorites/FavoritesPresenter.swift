@@ -18,7 +18,7 @@ class FavoritesPresenter {
         let controller = FavoritesViewController()
         controller.presenter = self
         controller.title = "Избранное"
-        controller.tabBarItem = UITabBarItem(title: "Избранное", image: UIImage(named: "cart.fill"), tag: 0)
+        controller.tabBarItem = UITabBarItem(title: "Избранное", image: UIImage(named: "heart.fill"), tag: 0)
         view = controller
         setProducts()
         return controller

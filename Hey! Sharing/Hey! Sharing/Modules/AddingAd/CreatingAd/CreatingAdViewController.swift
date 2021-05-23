@@ -198,9 +198,9 @@ class CreatingAdViewController: UIViewController {
 		addingSerivce.saveAd(product: product) { result in
 			switch result {
 			case .success:
-				print("NICEEEE, BOY")
+                print("123")
 			case .failure:
-				print("NOT YET")
+				print("err")
 			}
 		}
 	}

@@ -5,10 +5,11 @@
 //  Created by Никита Ляпустин on 05.05.2021.
 //
 
-import Moya
+import Foundation
 
-protocol NetworkServiceProtocol {
-    var provider: MoyaProvider<MultiTarget> { get }
+protocol NetworkService {
+    static var token: String { get }
+    static var baseUrl: String { get }
 
-//    func requset<T: Decodable>(targer: APITargetType, completion: @escaping (Result<T>, Error>) -> ())
+    static func save(token: String)
 }

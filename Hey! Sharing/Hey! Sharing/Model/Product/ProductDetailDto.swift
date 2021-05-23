@@ -10,7 +10,7 @@ import UIKit
 struct ProductDetailDto {
     var id: Int
     var name: String
-    var image: UIImage
+    var imageName: String
     var price: Int
     var forPeriod: Period
     var description: String
@@ -19,10 +19,10 @@ struct ProductDetailDto {
     var status: Status
     var address: String
 
-    init(id: Int, name: String, image: UIImage, price: Int, forPeriod: Period, status: Status, description: String, countOfViews: Int, category: CategoryName, address: String) {
+    init(id: Int, name: String, imageName: String, price: Int, forPeriod: Period, status: Status, description: String, countOfViews: Int, category: CategoryName, address: String) {
         self.id = id
         self.name = name
-        self.image = image
+        self.imageName = imageName
         self.price = price
         self.forPeriod = forPeriod
         self.description = description
@@ -36,7 +36,7 @@ struct ProductDetailDto {
         return ProductDetailDto (
             id: networkProduct.id,
             name: networkProduct.name,
-            image: getImage(from: networkProduct.image),
+            imageName: networkProduct.image,
             price: networkProduct.price,
             forPeriod: period(by: networkProduct.period),
             status: status(by: networkProduct.status),

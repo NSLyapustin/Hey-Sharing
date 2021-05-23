@@ -13,7 +13,7 @@ class ProfileProductCell: UITableViewCell {
     var product: Product? {
         didSet {
             guard let product = product else { return }
-            productImageView.image = product.image
+            productImageView.kf.setImage(with: URL(string: "http://localhost:8080/image/\(product.imageName)"))
             productNameLabel.text = product.name
             productPriceLabel.text = "\(product.price)₽ \(name(of: product.forPeriod))"
             productStatusLabel.text = "\(name(of: product.status))"

@@ -6,19 +6,20 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ProductCollectionViewCell: UICollectionViewCell {
 	var product: Product? {
 		didSet {
 			guard let product = product else { return }
-			productImageView.image = product.image
+            let url = URL(string: "http://localhost:8080/image/\(product.imageName)")
+            productImageView.kf.setImage(with: url)
 			productNameLabel.text = product.name
 			productPriceLabel.text = "\(product.price)Р \(name(of: product.forPeriod))"
 		}
 	}
 
     var addToFavorite: (() -> ())?
-	 
 
 	private let productImageView: UIImageView = {
 		let imgView = UIImageView()
@@ -72,7 +73,6 @@ class ProductCollectionViewCell: UICollectionViewCell {
 			return "В аренде"
 		}
 	}
-
 
 	override func layoutSubviews() {
 		layer.borderWidth = 1

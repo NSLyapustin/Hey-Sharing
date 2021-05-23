@@ -31,10 +31,15 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
 		tableView.delegate = self
 		tableView.dataSource = self
 		tableView.register(ProfileProductCell.self, forCellReuseIdentifier: productCellId)
-		#warning("re")
 		tableView.tableHeaderView = header
 		tableView.rowHeight = UITableView.automaticDimension
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(refreshData), for: .valueChanged)
 		configure()
+    }
+
+    @objc private func refreshData() {
+        presenter?.loadData()
     }
 
     func setProducts(products: [Product]) {
