@@ -7,21 +7,18 @@
 
 import UIKit
 
-class SignInPresenter {
+class SignInPresenter: SignInViewControllerPresenter {
 	private let authorizationService = RestAuthorizationService()
 	private weak var view: SignInViewController?
 	var coordinator: AuthorizationCoordinator?
 	var moveToSignUp: (() -> Void)?
 	var navigationController: UINavigationController?
 
-	func viewController() -> UIViewController {
-		let controller: SignInViewController = SignInViewController()
-		controller.presenter = self
-		view = controller
-		controller.title = "Вход"
-		navigationController?.pushViewController(controller, animated: true)
-		return controller
-	}
+    init(viewController: SignInViewController, coordinator: AuthorizationCoordinator, moveToSignUp: @escaping () -> Void) {
+        self.view = viewController
+        self.coordinator = coordinator
+        self.moveToSignUp = moveToSignUp
+    }
 
 	func signIn(login: String, password: String) {
 		authorizationService.signIn(login: login, password: password) { result in

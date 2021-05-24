@@ -11,11 +11,16 @@ class MainTabBarController: UITabBarController {
     let profileCoordinator = ProfileCoordinator()
     let marketCoordinator = MarketCoordinator()
     let favoritesCoordinator = FavoritesCoordinator()
-	let addingAdCoordinator = AddingAdCoordinator()
+	let creatingAdCoordinator = CreatingAdCoordinator()
 
     override func viewDidLoad() {
 		super.viewDidLoad()
 
-        viewControllers = [marketCoordinator.navigationController, addingAdCoordinator.navigationController, favoritesCoordinator.navigationController, profileCoordinator.navigationController]
+		viewControllers = [
+			marketCoordinator.navigationController,
+			creatingAdCoordinator.navigationController,
+			favoritesCoordinator.navigationController,
+			profileCoordinator.navigationController
+		]
     }
 }

@@ -13,3 +13,8 @@ protocol NetworkService {
 
     static func save(token: String)
 }
+
+enum NetworkError: Error {
+	case cantLoadData
+	case cantDoAction
+}

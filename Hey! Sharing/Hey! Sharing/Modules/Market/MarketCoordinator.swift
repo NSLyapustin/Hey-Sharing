@@ -13,18 +13,13 @@ class MarketCoordinator: Coordinator {
 	init(navigationController: UINavigationController = UINavigationController()) {
 		self.navigationController = navigationController
 		navigationController.navigationBar.prefersLargeTitles = true
-		let presenter = MarketPresenterImplementation()
-        presenter.coordinator = self
-		let viewController = presenter.viewController()
-//        let viewController = MarketFactory.marketViewController(from: self)
+		let viewController = MarketFactory.makeMarketViewController(from: self)
 
 		navigationController.viewControllers = [viewController]
 	}
 
-    func detailViewController(with id: Int) {
-        let presenter = DetailPresenter()
-        presenter.productId = id
-        let viewController = presenter.viewController()
-        navigationController.pushViewController(viewController, animated: true)
-    }
+	func detailViewController(with id: Int) {
+		let viewController = DetailFactory.makeDetailViewController(for: id)
+		navigationController.pushViewController(viewController, animated: true)
+	}
 }

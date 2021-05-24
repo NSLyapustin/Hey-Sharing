@@ -13,6 +13,7 @@
 		E805238C25ECD10000F962B1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E805238B25ECD10000F962B1 /* ProfileViewController.swift */; };
 		E805239125ECD59400F962B1 /* MarketCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E805239025ECD59400F962B1 /* MarketCoordinator.swift */; };
 		E805239625ECD5CF00F962B1 /* MarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E805239525ECD5CF00F962B1 /* MarketViewController.swift */; };
+		E822A53A265C47970065AFFF /* DetailFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E822A539265C47970065AFFF /* DetailFactory.swift */; };
 		E826FC792636014000070E2D /* TokenDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E826FC782636014000070E2D /* TokenDto.swift */; };
 		E82EB143260FC5E30092F045 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82EB142260FC5E30092F045 /* DetailViewController.swift */; };
 		E841C60025EFD9330032BCED /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E841C5FF25EFD9330032BCED /* ProfileService.swift */; };
@@ -23,9 +24,12 @@
 		E851B22925F90B81009332F9 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E851B22825F90B81009332F9 /* SignInViewController.swift */; };
 		E8539F002607EC9600805AD4 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8539EFF2607EC9600805AD4 /* ProductCollectionViewCell.swift */; };
 		E85514892659216E00F3A975 /* DefaultNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85514882659216E00F3A975 /* DefaultNetworkService.swift */; };
+		E866191F265B750D00F452E4 /* AuthorizationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E866191E265B750D00F452E4 /* AuthorizationFactory.swift */; };
 		E87207072636CD6900E2DB6C /* RestAddingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87207062636CD6800E2DB6C /* RestAddingService.swift */; };
 		E872070C2636D2FD00E2DB6C /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E872070B2636D2FD00E2DB6C /* UIImageExtension.swift */; };
 		E87207112636D31800E2DB6C /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87207102636D31800E2DB6C /* StringExtension.swift */; };
+		E87332C6265AFA0000EBE53C /* ProfileFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87332C5265AFA0000EBE53C /* ProfileFactory.swift */; };
+		E87332CB265AFCCC00EBE53C /* FavoritesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87332CA265AFCCC00EBE53C /* FavoritesFactory.swift */; };
 		E8773BDA2654755B00979E01 /* RestProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8773BD92654755B00979E01 /* RestProfileService.swift */; };
 		E8773BE12654790A00979E01 /* FavoritesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8773BE02654790A00979E01 /* FavoritesCoordinator.swift */; };
 		E8773BE926547F4300979E01 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8773BE826547F4300979E01 /* FavoritesViewController.swift */; };
@@ -40,7 +44,7 @@
 		E87893A7262DD0CE00F2C485 /* CreatingAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87893A6262DD0CE00F2C485 /* CreatingAdViewController.swift */; };
 		E87893AF262DD12800F2C485 /* RoundedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87893AE262DD12800F2C485 /* RoundedTextView.swift */; };
 		E87893B5262DD1C800F2C485 /* ProductAddingDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87893B4262DD1C800F2C485 /* ProductAddingDto.swift */; };
-		E87893BA262DD1F100F2C485 /* AddingAdCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87893B9262DD1F100F2C485 /* AddingAdCoordinator.swift */; };
+		E87893BA262DD1F100F2C485 /* CreatingAdCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87893B9262DD1F100F2C485 /* CreatingAdCoordinator.swift */; };
 		E87893BF262DD22200F2C485 /* CreatingAdPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87893BE262DD22200F2C485 /* CreatingAdPresenter.swift */; };
 		E882B2DC265AD0A500A088EE /* MarketFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B2DB265AD0A500A088EE /* MarketFactory.swift */; };
 		E89063892646047C007F3FC9 /* DetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89063882646047C007F3FC9 /* DetailService.swift */; };
@@ -69,8 +73,10 @@
 		E8C1D553262DF1DE00B9EB87 /* RestAuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C1D552262DF1DE00B9EB87 /* RestAuthorizationService.swift */; };
 		E8C35B532600E63B00885DFB /* SignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C35B522600E63A00885DFB /* SignUpPresenter.swift */; };
 		E8CC9C4E260DC46A008E69FE /* ProductsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CC9C4D260DC46A008E69FE /* ProductsStorage.swift */; };
+		E8CFF727265AEF4500F674C5 /* CreatingAdFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CFF726265AEF4500F674C5 /* CreatingAdFactory.swift */; };
 		E8D01CE8260B8FBA00C72E4B /* MarketServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D01CE7260B8FBA00C72E4B /* MarketServiceMock.swift */; };
-		E8D3486625F835E40048BBB9 /* ProfilePresenterImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D3486525F835E40048BBB9 /* ProfilePresenterImplementation.swift */; };
+		E8D1EC6C265C333400389379 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D1EC6B265C333400389379 /* UIViewControllerExtension.swift */; };
+		E8D3486625F835E40048BBB9 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D3486525F835E40048BBB9 /* ProfilePresenter.swift */; };
 		E8DDD59F25FE98470031863B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DDD59E25FE98470031863B /* SignUpViewController.swift */; };
 		E8E0767F25F91C9D00B91CD0 /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E0767E25F91C9D00B91CD0 /* RoundedTextField.swift */; };
 		E8E3E397260105F900CE1BDA /* AuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E3E396260105F900CE1BDA /* AuthorizationService.swift */; };
@@ -110,6 +116,7 @@
 		E805238B25ECD10000F962B1 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E805239025ECD59400F962B1 /* MarketCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketCoordinator.swift; sourceTree = "<group>"; };
 		E805239525ECD5CF00F962B1 /* MarketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketViewController.swift; sourceTree = "<group>"; };
+		E822A539265C47970065AFFF /* DetailFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFactory.swift; sourceTree = "<group>"; };
 		E826FC782636014000070E2D /* TokenDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDto.swift; sourceTree = "<group>"; };
 		E82EB142260FC5E30092F045 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		E841C5FF25EFD9330032BCED /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
@@ -120,9 +127,12 @@
 		E851B22825F90B81009332F9 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		E8539EFF2607EC9600805AD4 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		E85514882659216E00F3A975 /* DefaultNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNetworkService.swift; sourceTree = "<group>"; };
+		E866191E265B750D00F452E4 /* AuthorizationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationFactory.swift; sourceTree = "<group>"; };
 		E87207062636CD6800E2DB6C /* RestAddingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestAddingService.swift; sourceTree = "<group>"; };
 		E872070B2636D2FD00E2DB6C /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		E87207102636D31800E2DB6C /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		E87332C5265AFA0000EBE53C /* ProfileFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFactory.swift; sourceTree = "<group>"; };
+		E87332CA265AFCCC00EBE53C /* FavoritesFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesFactory.swift; sourceTree = "<group>"; };
 		E8773BD92654755B00979E01 /* RestProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestProfileService.swift; sourceTree = "<group>"; };
 		E8773BE02654790A00979E01 /* FavoritesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCoordinator.swift; sourceTree = "<group>"; };
 		E8773BE826547F4300979E01 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
@@ -137,7 +147,7 @@
 		E87893A6262DD0CE00F2C485 /* CreatingAdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatingAdViewController.swift; sourceTree = "<group>"; };
 		E87893AE262DD12800F2C485 /* RoundedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextView.swift; sourceTree = "<group>"; };
 		E87893B4262DD1C800F2C485 /* ProductAddingDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAddingDto.swift; sourceTree = "<group>"; };
-		E87893B9262DD1F100F2C485 /* AddingAdCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingAdCoordinator.swift; sourceTree = "<group>"; };
+		E87893B9262DD1F100F2C485 /* CreatingAdCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatingAdCoordinator.swift; sourceTree = "<group>"; };
 		E87893BE262DD22200F2C485 /* CreatingAdPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatingAdPresenter.swift; sourceTree = "<group>"; };
 		E882B2DB265AD0A500A088EE /* MarketFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketFactory.swift; sourceTree = "<group>"; };
 		E89063882646047C007F3FC9 /* DetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailService.swift; sourceTree = "<group>"; };
@@ -172,8 +182,10 @@
 		E8C1D552262DF1DE00B9EB87 /* RestAuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestAuthorizationService.swift; sourceTree = "<group>"; };
 		E8C35B522600E63A00885DFB /* SignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPresenter.swift; sourceTree = "<group>"; };
 		E8CC9C4D260DC46A008E69FE /* ProductsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsStorage.swift; sourceTree = "<group>"; };
+		E8CFF726265AEF4500F674C5 /* CreatingAdFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatingAdFactory.swift; sourceTree = "<group>"; };
 		E8D01CE7260B8FBA00C72E4B /* MarketServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketServiceMock.swift; sourceTree = "<group>"; };
-		E8D3486525F835E40048BBB9 /* ProfilePresenterImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenterImplementation.swift; sourceTree = "<group>"; };
+		E8D1EC6B265C333400389379 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		E8D3486525F835E40048BBB9 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		E8DDD59E25FE98470031863B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		E8E0767E25F91C9D00B91CD0 /* RoundedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
 		E8E3E396260105F900CE1BDA /* AuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationService.swift; sourceTree = "<group>"; };
@@ -287,8 +299,9 @@
 			children = (
 				E8078EC326025215009CF161 /* View */,
 				E8B127A425EC1D2500344E4B /* ProfileCoordinator.swift */,
-				E8D3486525F835E40048BBB9 /* ProfilePresenterImplementation.swift */,
+				E8D3486525F835E40048BBB9 /* ProfilePresenter.swift */,
 				E805238B25ECD10000F962B1 /* ProfileViewController.swift */,
+				E87332C5265AFA0000EBE53C /* ProfileFactory.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -309,6 +322,7 @@
 				E8B33EC7260B25A400ED41CD /* ColorExtension.swift */,
 				E872070B2636D2FD00E2DB6C /* UIImageExtension.swift */,
 				E87207102636D31800E2DB6C /* StringExtension.swift */,
+				E8D1EC6B265C333400389379 /* UIViewControllerExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -326,6 +340,7 @@
 			children = (
 				E82EB142260FC5E30092F045 /* DetailViewController.swift */,
 				E84F81FD2646863B00C587F1 /* DetailPresenter.swift */,
+				E822A539265C47970065AFFF /* DetailFactory.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -333,12 +348,13 @@
 		E841C5FE25EFD8DC0032BCED /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				E890638726460420007F3FC9 /* DetailService */,
 				E89080232642E3C8006AE86A /* NetworkService */,
 				E8773BF52654820200979E01 /* FavoritesService */,
-				E8C1D54B262DF09400B9EB87 /* Adding */,
-				E877CFD9260774250026984D /* Market */,
-				E8E3E395260105BA00CE1BDA /* Authorization */,
-				E8E3E3942601056D00CE1BDA /* Profile */,
+				E8C1D54B262DF09400B9EB87 /* AddingService */,
+				E877CFD9260774250026984D /* MarketService */,
+				E8E3E395260105BA00CE1BDA /* AuthorizationService */,
+				E8E3E3942601056D00CE1BDA /* ProfileService */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -358,6 +374,7 @@
 				E8E3E3902601048800CE1BDA /* SignIn */,
 				E8E3E38C2601048200CE1BDA /* SignUp */,
 				E804100825FEAED600D04044 /* AuthorizationCoordinator.swift */,
+				E866191E265B750D00F452E4 /* AuthorizationFactory.swift */,
 			);
 			path = Authorization;
 			sourceTree = "<group>";
@@ -378,6 +395,7 @@
 				E8773BE826547F4300979E01 /* FavoritesViewController.swift */,
 				E8773BF02654805D00979E01 /* FavoritesPresenter.swift */,
 				E8773BE02654790A00979E01 /* FavoritesCoordinator.swift */,
+				E87332CA265AFCCC00EBE53C /* FavoritesFactory.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -399,7 +417,7 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		E877CFD9260774250026984D /* Market */ = {
+		E877CFD9260774250026984D /* MarketService */ = {
 			isa = PBXGroup;
 			children = (
 				E8ACDBA826447B7500DD64E0 /* NetworkModel */,
@@ -407,25 +425,18 @@
 				E8D01CE7260B8FBA00C72E4B /* MarketServiceMock.swift */,
 				E8ACDBA0264479F900DD64E0 /* RestMarketService.swift */,
 			);
-			path = Market;
+			path = MarketService;
 			sourceTree = "<group>";
 		};
 		E87893A4262DCF1200F2C485 /* AddingAd */ = {
 			isa = PBXGroup;
 			children = (
-				E87893A5262DD0A700F2C485 /* CreatingAd */,
-				E87893B9262DD1F100F2C485 /* AddingAdCoordinator.swift */,
+				E87893BE262DD22200F2C485 /* CreatingAdPresenter.swift */,
+				E87893B9262DD1F100F2C485 /* CreatingAdCoordinator.swift */,
+				E87893A6262DD0CE00F2C485 /* CreatingAdViewController.swift */,
+				E8CFF726265AEF4500F674C5 /* CreatingAdFactory.swift */,
 			);
 			path = AddingAd;
-			sourceTree = "<group>";
-		};
-		E87893A5262DD0A700F2C485 /* CreatingAd */ = {
-			isa = PBXGroup;
-			children = (
-				E87893A6262DD0CE00F2C485 /* CreatingAdViewController.swift */,
-				E87893BE262DD22200F2C485 /* CreatingAdPresenter.swift */,
-			);
-			path = CreatingAd;
 			sourceTree = "<group>";
 		};
 		E87893B3262DD1BA00F2C485 /* Product */ = {
@@ -460,7 +471,6 @@
 		E89080232642E3C8006AE86A /* NetworkService */ = {
 			isa = PBXGroup;
 			children = (
-				E890638726460420007F3FC9 /* DetailService */,
 				E89080242642E3EF006AE86A /* NetworkService.swift */,
 				E85514882659216E00F3A975 /* DefaultNetworkService.swift */,
 			);
@@ -549,14 +559,14 @@
 			path = Coordinators;
 			sourceTree = "<group>";
 		};
-		E8C1D54B262DF09400B9EB87 /* Adding */ = {
+		E8C1D54B262DF09400B9EB87 /* AddingService */ = {
 			isa = PBXGroup;
 			children = (
 				E8ACDB9A26444EC700DD64E0 /* NetworkModel */,
 				E8C1D54D262DF0C600B9EB87 /* AddingService.swift */,
 				E87207062636CD6800E2DB6C /* RestAddingService.swift */,
 			);
-			path = Adding;
+			path = AddingService;
 			sourceTree = "<group>";
 		};
 		E8CC9C4C260DC44B008E69FE /* Products */ = {
@@ -597,24 +607,24 @@
 			path = SignIn;
 			sourceTree = "<group>";
 		};
-		E8E3E3942601056D00CE1BDA /* Profile */ = {
+		E8E3E3942601056D00CE1BDA /* ProfileService */ = {
 			isa = PBXGroup;
 			children = (
 				E841C5FF25EFD9330032BCED /* ProfileService.swift */,
 				E8490EAC25F61D3C007A7192 /* ProfileServiceMock.swift */,
 				E8773BD92654755B00979E01 /* RestProfileService.swift */,
 			);
-			path = Profile;
+			path = ProfileService;
 			sourceTree = "<group>";
 		};
-		E8E3E395260105BA00CE1BDA /* Authorization */ = {
+		E8E3E395260105BA00CE1BDA /* AuthorizationService */ = {
 			isa = PBXGroup;
 			children = (
 				E8E3E396260105F900CE1BDA /* AuthorizationService.swift */,
 				E8E3E39B26010DD600CE1BDA /* MockAuthorizationService.swift */,
 				E8C1D552262DF1DE00B9EB87 /* RestAuthorizationService.swift */,
 			);
-			path = Authorization;
+			path = AuthorizationService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -865,7 +875,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#if [ -f ~/com.raywenderlich.swiftlint.yml ]; then\n#  if which swiftlint >/dev/null; then\n#    swiftlint --no-cache --config ~/com.raywenderlich.swiftlint.yml\n#  fi\n#fi\n";
+			shellScript = "if [ -f ~/com.raywenderlich.swiftlint.yml ]; then\n  if which swiftlint >/dev/null; then\n    swiftlint --no-cache --config ~/com.raywenderlich.swiftlint.yml\n  fi\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -876,7 +886,9 @@
 			files = (
 				E882B2DC265AD0A500A088EE /* MarketFactory.swift in Sources */,
 				E87207072636CD6900E2DB6C /* RestAddingService.swift in Sources */,
+				E8D1EC6C265C333400389379 /* UIViewControllerExtension.swift in Sources */,
 				E8E3E397260105F900CE1BDA /* AuthorizationService.swift in Sources */,
+				E8CFF727265AEF4500F674C5 /* CreatingAdFactory.swift in Sources */,
 				E89080252642E3EF006AE86A /* NetworkService.swift in Sources */,
 				E890639526460724007F3FC9 /* ResponseProductDetailDto.swift in Sources */,
 				E89DE9B7260F07E000003820 /* MarketPresenter.swift in Sources */,
@@ -888,15 +900,17 @@
 				E87893BF262DD22200F2C485 /* CreatingAdPresenter.swift in Sources */,
 				E8B127A025EBF1F100344E4B /* MainTabBarController.swift in Sources */,
 				E87893A7262DD0CE00F2C485 /* CreatingAdViewController.swift in Sources */,
-				E8D3486625F835E40048BBB9 /* ProfilePresenterImplementation.swift in Sources */,
+				E8D3486625F835E40048BBB9 /* ProfilePresenter.swift in Sources */,
 				E8490EAD25F61D3C007A7192 /* ProfileServiceMock.swift in Sources */,
 				E87893AF262DD12800F2C485 /* RoundedTextView.swift in Sources */,
 				E826FC792636014000070E2D /* TokenDto.swift in Sources */,
 				E8B33ECD260B398000ED41CD /* Category.swift in Sources */,
 				E84F81FE2646863B00C587F1 /* DetailPresenter.swift in Sources */,
+				E87332CB265AFCCC00EBE53C /* FavoritesFactory.swift in Sources */,
 				E805239125ECD59400F962B1 /* MarketCoordinator.swift in Sources */,
 				E8C35B532600E63B00885DFB /* SignUpPresenter.swift in Sources */,
 				E877CFDB2607743D0026984D /* MarketService.swift in Sources */,
+				E87332C6265AFA0000EBE53C /* ProfileFactory.swift in Sources */,
 				E8B4195925EBBC2D00C509CC /* Hey__Sharing.xcdatamodeld in Sources */,
 				E8B4198725EBBD1100C509CC /* Coordinator.swift in Sources */,
 				E8F380ED25FF5347002DAFB8 /* SignInPresenter.swift in Sources */,
@@ -910,7 +924,7 @@
 				E872070C2636D2FD00E2DB6C /* UIImageExtension.swift in Sources */,
 				E877F11626092D940076C22A /* CategoryCollectionView.swift in Sources */,
 				E8D01CE8260B8FBA00C72E4B /* MarketServiceMock.swift in Sources */,
-				E87893BA262DD1F100F2C485 /* AddingAdCoordinator.swift in Sources */,
+				E87893BA262DD1F100F2C485 /* CreatingAdCoordinator.swift in Sources */,
 				E89591CD26033F74009820FA /* ProfileHeaderCell.swift in Sources */,
 				E851B22925F90B81009332F9 /* SignInViewController.swift in Sources */,
 				E8490EA525F608B3007A7192 /* ProfileProductCell.swift in Sources */,
@@ -929,11 +943,13 @@
 				E877CFD526075CAD0026984D /* ProductDetailDto.swift in Sources */,
 				E8773BF12654805D00979E01 /* FavoritesPresenter.swift in Sources */,
 				E8B127A525EC1D2500344E4B /* ProfileCoordinator.swift in Sources */,
+				E866191F265B750D00F452E4 /* AuthorizationFactory.swift in Sources */,
 				E841C60625EFD98F0032BCED /* ProductModel.swift in Sources */,
 				E8E3E39C26010DD600CE1BDA /* MockAuthorizationService.swift in Sources */,
 				E8B1279525EBE54C00344E4B /* Storyboarded.swift in Sources */,
 				E8CC9C4E260DC46A008E69FE /* ProductsStorage.swift in Sources */,
 				E87207112636D31800E2DB6C /* StringExtension.swift in Sources */,
+				E822A53A265C47970065AFFF /* DetailFactory.swift in Sources */,
 				E8ACDBA1264479F900DD64E0 /* RestMarketService.swift in Sources */,
 				E841C60025EFD9330032BCED /* ProfileService.swift in Sources */,
 			);

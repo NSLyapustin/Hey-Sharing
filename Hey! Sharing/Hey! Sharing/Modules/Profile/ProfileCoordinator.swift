@@ -9,14 +9,17 @@ import UIKit
 
 class ProfileCoordinator: Coordinator {
     var navigationController: UINavigationController
-
     init(navigationController: UINavigationController = UINavigationController()) {
-        self.navigationController = navigationController
-        navigationController.navigationBar.prefersLargeTitles = true
-        let presenter = ProfilePresenterImplementation()
+		self.navigationController = navigationController
+		navigationController.navigationBar.prefersLargeTitles = true
+		let viewController = ProfileFactory.makeProfileViewController(from: self)
 
-        let viewController = presenter.viewController()
-
-        navigationController.viewControllers = [viewController]
+		navigationController.viewControllers = [viewController]
     }
+
+	func detailViewController(with id: Int) {
+		let viewController = DetailFactory.makeDetailViewController(for: id)
+		navigationController.pushViewController(viewController, animated: true)
+	}
+
 }

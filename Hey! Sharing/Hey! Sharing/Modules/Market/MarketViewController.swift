@@ -16,7 +16,6 @@ protocol MarketViewControllerPresenter: AnyObject {
 }
 
 class MarketViewController: UIViewController {
-
 	var presenter: MarketViewControllerPresenter?
 	var products: [Product] = []
     weak var coordinator: MarketCoordinator?
@@ -24,9 +23,9 @@ class MarketViewController: UIViewController {
 	var productCollectionView: UICollectionView?
 
     override func viewDidLoad() {
-        super.viewDidLoad()
+		super.viewDidLoad()
 		setup()
-//        presenter?.viewDidLoad()
+		presenter?.viewDidLoad()
     }
 
 	func setProducts(products: [Product]) {
@@ -42,9 +41,11 @@ class MarketViewController: UIViewController {
 		productCollectionView = UICollectionView(frame: .zero, collectionViewLayout: productsLayout)
 		guard let productsCollectionView = productCollectionView else { return }
 		productsCollectionView.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: "productCell")
-		productCollectionView?.register(CategoryCollectionView.self,
-										forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-										withReuseIdentifier: CategoryCollectionView.identifier)
+		productCollectionView?.register(
+			CategoryCollectionView.self,
+			forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+			withReuseIdentifier: CategoryCollectionView.identifier
+		)
 		productsCollectionView.delegate = self
 		productsCollectionView.dataSource = self
 		view.addSubview(productsCollectionView)
@@ -56,21 +57,21 @@ class MarketViewController: UIViewController {
 			make.trailing.equalToSuperview().inset(5)
 		}
 		productsCollectionView.backgroundColor = .white
-        productCollectionView?.refreshControl = UIRefreshControl()
-        productCollectionView?.refreshControl?.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+		productCollectionView?.refreshControl = UIRefreshControl()
+		productCollectionView?.refreshControl?.addTarget(self, action: #selector(refreshData), for: .valueChanged)
 
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Найти"
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
+		searchController.searchResultsUpdater = self
+		searchController.obscuresBackgroundDuringPresentation = false
+		searchController.searchBar.placeholder = "Найти"
+		navigationItem.searchController = searchController
+		definesPresentationContext = true
 	}
 
 	func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 		guard let header = collectionView.dequeueReusableSupplementaryView(
 			ofKind: UICollectionView.elementKindSectionHeader,
 			withReuseIdentifier: CategoryCollectionView.identifier,
-				for: indexPath) as? CategoryCollectionView else { fatalError() }
+				for: indexPath) as? CategoryCollectionView else { return UICollectionViewCell() }
 		header.awakeFromNib()
 		header.presenter = presenter
 		return header
@@ -92,10 +93,11 @@ extension MarketViewController: UICollectionViewDataSource {
 	}
 
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as? ProductCollectionViewCell else { return ProductCollectionViewCell() }
+		guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath)
+			as? ProductCollectionViewCell else { return ProductCollectionViewCell() }
 		cell.product = products[indexPath.row]
-        cell.addToFavorite = {
-            self.presenter?.addToFavorite(id: self.products[indexPath.row].id)
+		cell.addToFavorite = {
+			self.presenter?.addToFavorite(id: self.products[indexPath.row].id)
         }
 		return cell
 	}
@@ -107,15 +109,16 @@ extension MarketViewController: UICollectionViewDelegateFlowLayout {
 	}
 
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        #warning("content size in cell")
-		return CGSize(width: self.view.frame.width / 2 - 11,
-			   height: self.view.frame.width / 2 - 5)
+		return CGSize(
+			width: self.view.frame.width / 2 - 11,
+			height: self.view.frame.width / 2 - 5
+		)
 	}
 }
 
 extension MarketViewController: UICollectionViewDelegate {
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		productCollectionView?.deselectItem(at: indexPath, animated: true)
-        presenter?.moveToDetailViewController(forProductWith: indexPath.row)
+		presenter?.moveToDetailViewController(forProductWith: indexPath.row)
 	}
 }

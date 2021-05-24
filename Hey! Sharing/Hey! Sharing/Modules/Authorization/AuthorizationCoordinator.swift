@@ -11,26 +11,19 @@ class AuthorizationCoordinator: Coordinator {
 	var navigationController: UINavigationController
 	var authorizationIsFinished: (() -> Void)?
 
-	init(navigationController: UINavigationController = UINavigationController()){
+	init(navigationController: UINavigationController = UINavigationController()) {
 		self.navigationController = navigationController
+        navigationController.navigationBar.prefersLargeTitles = true
 	}
 
 	func signInViewController() -> UIViewController {
-		#warning("redo")
-//		let controller: SignInViewController = SignInViewController(presenter: SignInPresenter())
-
-		let presenter = SignInPresenter()
-		presenter.moveToSignUp = {
-			self.signUpViewController()
-		}
-		presenter.coordinator = self
-		navigationController.viewControllers = [presenter.viewController()]
-		navigationController.navigationBar.prefersLargeTitles = true
+		let viewController = AuthorizationFactory.makeSignInViewController(from: self)
+		navigationController.viewControllers = [viewController]
 		return navigationController
 	}
 
 	func signUpViewController() {
-		let presenter = SignUpPresenter()
-		navigationController.pushViewController(presenter.viewController(), animated: true)
+		let viewController = AuthorizationFactory.makeSignUpViewController(from: self)
+		navigationController.pushViewController(viewController, animated: true)
 	}
 }

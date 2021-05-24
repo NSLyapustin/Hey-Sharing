@@ -17,47 +17,46 @@ struct RequestProductModel: Encodable {
     let address: String
 
     init(product: ProductAddingDto, with imageName: String) {
-        self.name = product.name
-        self.image = imageName
-        self.price = Int(product.price) ?? 0
-        self.period = RequestProductModel.nameOf(period: product.forPeriod)
-        self.category = RequestProductModel.nameOf(category: product.category)
-        self.description = product.description
-        self.address = product.address
+		self.name = product.name
+		self.image = imageName
+		self.price = Int(product.price) ?? 0
+		self.period = RequestProductModel.nameOf(period: product.forPeriod)
+		self.category = RequestProductModel.nameOf(category: product.category)
+		self.description = product.description
+		self.address = product.address
     }
 
     private static func nameOf(category: String) -> String {
         switch category {
         case "Хобби и отдых":
-            return "HOBBIES_AND_LEISURE"
+			return "HOBBIES_AND_LEISURE"
         case "Все":
-            return "ALL"
+			return "ALL"
         case "Транспорт":
-            return "VEHICLE"
+			return "VEHICLE"
         case "Бытовая техника":
-            return "APPLIANCES"
+			return "APPLIANCES"
         case "Электроника":
-            return "ELECTRONICS"
+			return "ELECTRONICS"
         case "Мебель":
-            return "FURNITURE"
+			return "FURNITURE"
         case "Одежда":
-            return "CLOTHES"
+			return "CLOTHES"
         default:
-            return ""
+			return ""
         }
     }
 
     private static func nameOf(period: String) -> String {
         switch period {
         case "В день":
-            return "DAY"
+			return "DAY"
         case "В неделю":
-            return "WEEK"
+			return "WEEK"
         case "В месяц":
-            return "MONTH"
+			return "MONTH"
         default:
-            return ""
+			return ""
         }
     }
 }
-

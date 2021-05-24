@@ -8,6 +8,12 @@
 import UIKit
 import SnapKit
 
+protocol DetailViewControllerPresenter {
+	func viewDidLoad()
+	func loadProduct(by id: Int)
+	func addToFavorite(id: Int)
+}
+
 class DetailViewController: UIViewController {
 	private let productImageView = UIImageView()
 	private let nameLabel = UILabel()
@@ -19,6 +25,7 @@ class DetailViewController: UIViewController {
 	private let favoriteButton = UIButton()
 
     var presenter: DetailPresenter?
+	var product: ProductDetailDto?
 
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
@@ -27,6 +34,7 @@ class DetailViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		presenter?.viewDidLoad()
 		setup()
 	}
 
@@ -37,18 +45,19 @@ class DetailViewController: UIViewController {
 	}
 
     func set(product: ProductDetailDto) {
-        let url = URL(string: "http://localhost:8080/image/\(product.imageName)")
-        productImageView.kf.setImage(with: url)
-        nameLabel.text = product.name
-        priceLabel.text = "\(product.price) P"
-        statusLabel.text = {
-            switch product.status {
-            case .awaitingСonfirmation:
-                return "Ожидает подтверждения по адресу:"
-            case .atTheReceptionPoint:
-                return "Находится в пункте по адресу:"
-            case .atTheTenant:
-                return "В аренде, будет по адресу:"
+		self.product = product
+		let url = URL(string: "http://localhost:8080/image/\(product.imageName)")
+		productImageView.kf.setImage(with: url)
+		nameLabel.text = product.name
+		priceLabel.text = "\(product.price) P"
+		statusLabel.text = {
+			switch product.status {
+			case .awaitingСonfirmation:
+				return "Ожидает подтверждения по адресу:"
+			case .atTheReceptionPoint:
+				return "Находится в пункте по адресу:"
+			case .atTheTenant:
+				return "В аренде, будет по адресу:"
             }
         }()
         descriptionLabel.text = product.description
@@ -77,7 +86,6 @@ class DetailViewController: UIViewController {
 			make.top.equalTo(productImageView.snp.bottom).offset(10)
 			make.width.equalToSuperview().multipliedBy(0.95)
 			make.centerX.equalToSuperview()
-//			make.height.equalTo(35)
 		}
 		nameLabel.numberOfLines = 0
 		nameLabel.font = UIFont.systemFont(ofSize: 22)
@@ -107,7 +115,6 @@ class DetailViewController: UIViewController {
 			make.centerX.equalToSuperview()
 		}
 		statusLabel.numberOfLines = 0
-//		statusLabel.text = "Занято, в скором времени можно будет забрать по адресу:"
 
 		scrollView.addSubview(addressLabel)
 		addressLabel.snp.makeConstraints { make in
@@ -119,21 +126,19 @@ class DetailViewController: UIViewController {
 
 		let statusLine = UIView()
 		addressLabel.addSubview(statusLine)
-        statusLine.snp.makeConstraints { make in
+		statusLine.snp.makeConstraints { make in
 			make.leading.equalToSuperview().offset(-5)
 			make.top.equalTo(statusLabel)
 			make.bottom.equalTo(addressLabel)
 			make.width.equalTo(2)
 		}
-        statusLine.backgroundColor = .purple
+		statusLine.backgroundColor = .purple
 
 		scrollView.addSubview(descriptionLabel)
 		descriptionLabel.snp.makeConstraints { make in
 			make.top.equalTo(addressLabel.snp.bottom).offset(10)
 			make.width.equalToSuperview().multipliedBy(0.95)
 			make.centerX.equalToSuperview()
-//			make.height.equalTo(35)
-//			make.bottom.equalToSuperview().inset(10)
 		}
 		descriptionLabel.numberOfLines = 0
 
@@ -157,19 +162,25 @@ class DetailViewController: UIViewController {
 		favoriteButton.setTitle("В избранное!", for: .normal)
 		favoriteButton.backgroundColor = .purple
 		favoriteButton.layer.cornerRadius = 5
-//		favoriteButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
 		favoriteButton.titleLabel?.textColor = .white
 		favoriteButton.titleLabel?.textAlignment = .center
 
-		favoriteButton.addTarget(self, action: #selector(btnTouchUpInside(sender:)), for: .touchUpInside)
-		favoriteButton.addTarget(self, action: #selector(btnTappedDown(sender:)), for: .touchDown)
+		favoriteButton.addTarget(self, action: #selector(favoriteButtonTapped), for: .touchUpInside)
+		favoriteButton.addTarget(self, action: #selector(heldDown), for: .touchDown)
+		favoriteButton.addTarget(self, action: #selector(buttonHeldAndReleased), for: .touchDragExit)
 	}
 
-	@objc private func btnTappedDown(sender: UIButton) {
-		sender.backgroundColor = .black
+	@objc private func favoriteButtonTapped(sender: UIButton) {
+		favoriteButton.backgroundColor = UIColor.themeColor
+		guard let id = product?.id else { return }
+		presenter?.addToFavorite(id: id)
 	}
 
-	@objc private func btnTouchUpInside(sender: UIButton) {
-		sender.backgroundColor = .purple
+	@objc func heldDown() {
+		favoriteButton.backgroundColor = UIColor.themeColor.withAlphaComponent(0.5)
+	}
+
+	@objc func buttonHeldAndReleased() {
+		favoriteButton.backgroundColor = UIColor.themeColor
 	}
 }

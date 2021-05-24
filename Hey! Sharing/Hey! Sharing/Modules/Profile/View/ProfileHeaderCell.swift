@@ -12,17 +12,17 @@ class ProfileHeaderView: UIView {
 	let whiteCircle = UIView()
 	let incomeView = UIView()
     let incomeLabel: UILabel = {
-        var label = UILabel()
-        label.tintColor = .black
-        label.font = .systemFont(ofSize: 22)
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        return label
+		var label = UILabel()
+		label.tintColor = .black
+		label.font = .systemFont(ofSize: 22)
+		label.textAlignment = .center
+		label.numberOfLines = 0
+		return label
     }()
 	var income: Int? {
 		didSet {
-            guard let income = income else { return }
-            incomeLabel.text = "Доход:\n\(income)"
+			guard let income = income else { return }
+			incomeLabel.text = "Доход:\n\(income)"
 		}
 	}
 
@@ -48,12 +48,15 @@ class ProfileHeaderView: UIView {
 			make.centerY.equalTo(purpleBox.snp.bottom)
 		}
 
-        whiteCircle.addSubview(incomeLabel)
+		whiteCircle.addSubview(incomeLabel)
         incomeLabel.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
             make.height.equalTo(80)
             make.width.equalToSuperview().multipliedBy(0.9)
         }
+		whiteCircle.layer.cornerRadius = UIScreen.main.bounds.width / 5
+		whiteCircle.layer.borderWidth = 1
+		whiteCircle.layer.borderColor = UIColor.themeColor.cgColor
 	}
 
 	required init?(coder: NSCoder) {

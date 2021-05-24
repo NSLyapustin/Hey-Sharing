@@ -10,15 +10,15 @@ import KeychainAccess
 
 class DefaultNetworkService: NetworkService {
 
-    static var token: String {
-        get {
-            let keychain = Keychain(service: "http://localhost:8080/signIn")
+	static var token: String {
+		get {
+			let keychain = Keychain(service: "http://localhost:8080/signIn")
             return keychain["token"] ?? ""
         }
     }
 
     static var baseUrl: String {
-        get {
+		get {
             return "http://localhost:8080/"
         }
     }

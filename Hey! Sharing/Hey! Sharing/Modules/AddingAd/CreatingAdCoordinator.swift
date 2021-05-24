@@ -7,14 +7,14 @@
 
 import UIKit
 
-class AddingAdCoordinator {
+class CreatingAdCoordinator {
 	var navigationController: UINavigationController
 
-	init(navigationController: UINavigationController = UINavigationController()){
+	init(navigationController: UINavigationController = UINavigationController()) {
 		self.navigationController = navigationController
-		let presenter = CreatingAdPresenter()
-		presenter.coordinator = self
-		navigationController.viewControllers = [presenter.viewController()]
 		navigationController.navigationBar.prefersLargeTitles = true
+        let viewController = CreatingAdFactory.makeCreatingAdViewController(from: self)
+
+        navigationController.viewControllers = [viewController]
 	}
 }

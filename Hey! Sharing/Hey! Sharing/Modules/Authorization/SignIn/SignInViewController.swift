@@ -7,15 +7,18 @@
 
 import UIKit
 
-class SignInViewController: UIViewController, UITextFieldDelegate {
+protocol SignInViewControllerPresenter {
+	func signIn(login: String, password: String)
+	var moveToSignUp: (() -> Void)? { get set }
+}
 
-    let loginTextField = RoundedTextField()
-    let passwordTextField = RoundedTextField()
-    let signInButton = UIButton()
+class SignInViewController: UIViewController, UITextFieldDelegate {
+	let loginTextField = RoundedTextField()
+	let passwordTextField = RoundedTextField()
+	let signInButton = UIButton()
 	let toSignUpButton = UIButton()
-	let forgotPassword = UIButton()
 	let errorLabel = UILabel()
-	var presenter: SignInPresenter?
+	var presenter: SignInViewControllerPresenter?
 
     override func viewDidLoad() {
 		super.viewDidLoad()
@@ -40,29 +43,31 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
 
 		view.addSubview(passwordTextField)
 		passwordTextField.delegate = self
-        passwordTextField.snp.makeConstraints { make in
+		passwordTextField.snp.makeConstraints { make in
 			make.width.equalTo(view.snp.width).multipliedBy(0.9)
 			make.height.equalTo(44)
 			make.centerX.equalTo(view.snp.centerX)
 			make.centerY.equalTo(loginTextField.snp.bottom).offset(38)
-        }
+		}
 		passwordTextField.isSecureTextEntry = true
-        passwordTextField.placeholder = "Пароль"
+			passwordTextField.placeholder = "Пароль"
 
-        view.addSubview(signInButton)
+		view.addSubview(signInButton)
 		signInButton.backgroundColor = UIColor.themeColor
 		signInButton.setTitle("Войти", for: .normal)
-        signInButton.snp.makeConstraints { make in
-            make.width.equalTo(view.snp.width).multipliedBy(0.9)
-            make.height.equalTo(44)
-            make.centerX.equalTo(view.snp.centerX)
+		signInButton.snp.makeConstraints { make in
+			make.width.equalTo(view.snp.width).multipliedBy(0.9)
+			make.height.equalTo(44)
+			make.centerX.equalTo(view.snp.centerX)
 			make.centerY.equalTo(passwordTextField.snp.bottom).offset(38)
-        }
+		}
 		signInButton.layer.cornerRadius = 22
 		signInButton.titleLabel?.textColor = .white
 		signInButton.titleLabel?.text = "Войти"
 		signInButton.titleLabel?.textAlignment = .center
 		signInButton.addTarget(self, action: #selector(signInButtonTapped), for: .touchUpInside)
+		signInButton.addTarget(self, action: #selector(heldDown), for: .touchDown)
+		signInButton.addTarget(self, action: #selector(buttonHeldAndReleased), for: .touchDragExit)
 
 		view.addSubview(toSignUpButton)
 		toSignUpButton.snp.makeConstraints { make in
@@ -74,21 +79,11 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
 		toSignUpButton.setTitle("Зарегистрироваться", for: .normal)
 		toSignUpButton.setTitleColor(UIColor.themeColor, for: .normal)
 		toSignUpButton.addTarget(self, action: #selector(registBtnTapped), for: .touchUpInside)
-
-		view.addSubview(forgotPassword)
-		forgotPassword.snp.makeConstraints { make in
-			make.width.equalTo(125)
-			make.centerX.equalTo(view.snp.centerX)
-			make.centerY.equalTo(toSignUpButton.snp.bottom).offset(20)
-		}
-		forgotPassword.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-		forgotPassword.setTitle("Забыли пароль?", for: .normal)
-		forgotPassword.setTitleColor(UIColor.themeColor, for: .normal)
 	}
 
-	@objc
-	private func registBtnTapped() {
-		presenter?.moveToSignUp!()
+	@objc private func registBtnTapped() {
+		guard let moveToSignUp = presenter?.moveToSignUp else { return }
+		moveToSignUp()
 	}
 
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -101,7 +96,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
 		errorLabel.snp.makeConstraints { make in
 			make.width.equalToSuperview().multipliedBy(0.9)
 			make.centerX.equalToSuperview()
-			make.centerY.equalTo(forgotPassword.snp.bottom).offset(20)
+			make.centerY.equalTo(toSignUpButton.snp.bottom).offset(20)
 		}
 		errorLabel.font = UIFont.systemFont(ofSize: 12)
 		errorLabel.textColor = .red
@@ -109,9 +104,17 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
 		errorLabel.text = error
 	}
 
-	@objc
-	func signInButtonTapped() {
+	@objc func signInButtonTapped() {
+		signInButton.backgroundColor = UIColor.themeColor
 		guard let login = loginTextField.text, let password = passwordTextField.text else { return }
 		presenter?.signIn(login: login, password: password)
+	}
+
+	@objc func heldDown() {
+		signInButton.backgroundColor = UIColor.themeColor.withAlphaComponent(0.5)
+	}
+
+	@objc func buttonHeldAndReleased() {
+		signInButton.backgroundColor = UIColor.themeColor
 	}
 }

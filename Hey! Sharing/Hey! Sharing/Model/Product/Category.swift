@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct Category {
+enum Category {
 	static var categories: [CategoryModel] = [
 		CategoryModel(name: .all, backgroundImage: UIImage(named: "retroAll")),
 		CategoryModel(name: .vehicle, backgroundImage: UIImage(named: "retroCar")),
@@ -34,21 +34,21 @@ enum CategoryName: String, CaseIterable {
 	case clothes = "Одежда"
 
     func toEnglish() -> String {
-        switch self {
-        case .all:
-            return "all"
-        case .vehicle:
-            return "vehicle"
-        case .appliances:
-            return "appliances"
-        case .electronics:
-            return "electronics"
-        case .furniture:
-            return "furniture"
-        case .hobbiesAndLeisure:
-            return "hobbies_And_Leisure"
-        case .clothes:
-            return "clothes"
+		switch self {
+		case .all:
+			return "all"
+		case .vehicle:
+			return "vehicle"
+		case .appliances:
+			return "appliances"
+		case .electronics:
+			return "electronics"
+		case .furniture:
+			return "furniture"
+		case .hobbiesAndLeisure:
+			return "hobbies_And_Leisure"
+		case .clothes:
+			return "clothes"
         }
     }
 }

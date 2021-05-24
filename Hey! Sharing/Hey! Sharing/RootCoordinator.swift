@@ -10,7 +10,6 @@ import Network
 import Reachability
 
 class RootCoordinator {
-
 	var window: UIWindow
     let authorizationService: AuthorizationService = RestAuthorizationService()
 
@@ -19,18 +18,19 @@ class RootCoordinator {
 	}
 
 	func start() {
-        let reachability = try! Reachability()
-        if reachability.connection == .unavailable {
-            showTabBarFlow()
+		let reachability = try! Reachability()
+		if reachability.connection == .unavailable {
+			showTabBarFlow()
         }
 
         authorizationService.checkAuth { result in
             switch result {
-            case .success( _):
+			case .success:
                 self.showTabBarFlow()
-            case .failure( _):
-                self.showAuthorizationFlow()
-            }
+//				self.showAuthorizationFlow()
+			case .failure:
+				self.showAuthorizationFlow()
+			}
         }
 	}
 

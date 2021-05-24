@@ -8,13 +8,15 @@
 import UIKit
 import SnapKit
 
-protocol ProfilePresenter: AnyObject {
+protocol ProfileViewControllerPresenter: AnyObject {
     var products: [Product] { get set }
     func loadData()
+    func viewDidLoad()
+	func moveToDetail(for productId: Int)
 }
 
 class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, Storyboarded {
-	var presenter: ProfilePresenter?
+	var presenter: ProfileViewControllerPresenter?
     weak var coordinator: ProfileCoordinator?
     let profileService = ProfileServiceMock()
 
@@ -27,19 +29,12 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
 
     override func viewDidLoad() {
 		super.viewDidLoad()
-
-		tableView.delegate = self
-		tableView.dataSource = self
-		tableView.register(ProfileProductCell.self, forCellReuseIdentifier: productCellId)
-		tableView.tableHeaderView = header
-		tableView.rowHeight = UITableView.automaticDimension
-        tableView.refreshControl = UIRefreshControl()
-        tableView.refreshControl?.addTarget(self, action: #selector(refreshData), for: .valueChanged)
-		configure()
+		presenter?.viewDidLoad()
+		configureTableView()
     }
 
     @objc private func refreshData() {
-        presenter?.loadData()
+		presenter?.loadData()
     }
 
     func setProducts(products: [Product]) {
@@ -56,14 +51,22 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		guard let cell = tableView.dequeueReusableCell(withIdentifier: productCellId, for: indexPath) as? ProfileProductCell else { fatalError("Cannot deque cell") }
+		guard let cell = tableView.dequeueReusableCell(withIdentifier: productCellId, for: indexPath)
+			as? ProfileProductCell else { fatalError("Cannot deque cell") }
 		cell.product = products[indexPath.row]
 		return cell
     }
 
-	private func configure() {
+	private func configureTableView() {
 		navigationController?.navigationBar.backgroundColor = UIColor.themeColor
 
+		tableView.delegate = self
+		tableView.dataSource = self
+		tableView.register(ProfileProductCell.self, forCellReuseIdentifier: productCellId)
+		tableView.tableHeaderView = header
+		tableView.rowHeight = UITableView.automaticDimension
+		tableView.refreshControl = UIRefreshControl()
+		tableView.refreshControl?.addTarget(self, action: #selector(refreshData), for: .valueChanged)
 		view.addSubview(tableView)
 		tableView.snp.makeConstraints { make in
 			make.bottom.equalTo(view.snp.bottom)
@@ -75,7 +78,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		tableView.deselectRow(at: indexPath, animated: true)
-		let detailViewController = DetailViewController()
-		navigationController?.pushViewController(detailViewController, animated: true)
+		presenter?.moveToDetail(for: products[indexPath.row].id)
 	}
 }

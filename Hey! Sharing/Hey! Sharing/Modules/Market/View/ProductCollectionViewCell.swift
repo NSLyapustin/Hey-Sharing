@@ -19,7 +19,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
 		}
 	}
 
-    var addToFavorite: (() -> ())?
+    var addToFavorite: (() -> Void)?
 
 	private let productImageView: UIImageView = {
 		let imgView = UIImageView()
@@ -97,15 +97,14 @@ class ProductCollectionViewCell: UICollectionViewCell {
 			make.trailing.equalToSuperview().inset(5)
 			make.top.equalTo(productImageView.snp.bottom)
 		}
-        let tap = UITapGestureRecognizer(target: self, action: #selector(favoriteButtonTapped))
+		let tap = UITapGestureRecognizer(target: self, action: #selector(favoriteButtonTapped))
         markAsFavoriteButton.addGestureRecognizer(tap)
 
 		addSubview(productNameLabel)
 		productNameLabel.snp.makeConstraints { make in
-            make.top.equalTo(productImageView.snp.bottom).offset(7.5)
+			make.top.equalTo(productImageView.snp.bottom).offset(7.5)
 			make.leading.equalToSuperview().inset(5)
 			make.trailing.lessThanOrEqualTo(markAsFavoriteButton.snp.leading)
-//			make.centerY.equalTo(markAsFavoriteButton)
 		}
 
 		addSubview(productPriceLabel)
@@ -117,6 +116,6 @@ class ProductCollectionViewCell: UICollectionViewCell {
 	}
 
     @objc private func favoriteButtonTapped() {
-        addToFavorite?()
+		addToFavorite?()
     }
 }

@@ -7,33 +7,40 @@
 
 import UIKit
 
-class DetailPresenter {
-    private let detailService: DetailService = RestDetailService()
+class DetailPresenter: DetailViewControllerPresenter {
+	private let detailService: DetailService = RestDetailService()
     private weak var view: DetailViewController?
     var productId: Int?
-    var coordinator: MarketCoordinator?
     var moveToDetail: ((String) -> Void)?
 
+	init(productId: Int, viewController: DetailViewController) {
+		self.view = viewController
+		self.productId = productId
+	}
+
+	func viewDidLoad() {
+		loadProduct(by: productId ?? 0)
+	}
+
     func loadProduct(by id: Int) {
-        detailService.getDetailProduct(by: id) { result in
-            switch result {
-            case .success(let product):
-                self.view?.set(product: product)
-            case .failure(let error):
-                print(error)
-            }
-        }
+		detailService.getDetailProduct(by: id) { result in
+			switch result {
+			case .success(let product):
+				self.view?.set(product: product)
+			case .failure(let error):
+				print(error)
+			}
+		}
     }
 
-    func viewController() -> UIViewController {
-        let controller = DetailViewController()
-        controller.presenter = self
-        controller.title = "Объявление"
-        view = controller
-
-        guard let id = productId else { return UIViewController() }
-
-        loadProduct(by: id)
-        return controller
-    }
+	func addToFavorite(id: Int) {
+		detailService.addToFavorites(id: id) { result in
+			switch result {
+			case .success:
+				self.view?.alert(message: "Товар успешно добавлен в избранное!", title: "Поздравляем!")
+			case .failure:
+				self.view?.alert(message: "Не удалось выполнить действие")
+			}
+		}
+	}
 }

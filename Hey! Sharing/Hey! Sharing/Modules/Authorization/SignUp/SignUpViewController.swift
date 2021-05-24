@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol SignUpViewControllerPresenter {
+    func registerUser(login: String, password: String, confirmPassword: String)
+}
+
 class SignUpViewController: UIViewController, UITextFieldDelegate {
 
 	let loginTextField = RoundedTextField()
@@ -14,12 +18,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
 	let confirmPasswordTextField = RoundedTextField()
 	let signUpButton = UIButton()
 	let errorLabel = UILabel()
-	var presenter: SignUpPresenter?
+	var presenter: SignUpViewControllerPresenter?
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		#warning("redo")
-//		self.presenter.viewDidLoad()
 		
 		loginTextField.delegate = self
 		passwordTextField.delegate = self
@@ -73,16 +75,28 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
 			make.centerY.equalTo(confirmPasswordTextField.snp.bottom).offset(38)
 		}
 		signUpButton.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
+		signUpButton.addTarget(self, action: #selector(heldDown), for: .touchDown)
+		signUpButton.addTarget(self, action: #selector(buttonHeldAndReleased), for: .touchDragExit)
 		signUpButton.layer.cornerRadius = 22
 		signUpButton.titleLabel?.textColor = .white
 		signUpButton.titleLabel?.textAlignment = .center
 	}
 
-	@objc
-	func signUpButtonTapped() {
-		guard let login = loginTextField.text, let password = passwordTextField.text, let confirmPassword = confirmPasswordTextField.text else { return }
+	@objc func signUpButtonTapped() {
+		signUpButton.backgroundColor = UIColor.themeColor
+		guard let login = loginTextField.text,
+			let password = passwordTextField.text,
+			let confirmPassword = confirmPasswordTextField.text else { return }
 
-		presenter?.registrateUser(login: login, password: password, confirmPassword: confirmPassword)
+		presenter?.registerUser(login: login, password: password, confirmPassword: confirmPassword)
+	}
+
+	@objc func heldDown() {
+		signUpButton.backgroundColor = UIColor.themeColor.withAlphaComponent(0.5)
+	}
+
+	@objc func buttonHeldAndReleased() {
+		signUpButton.backgroundColor = UIColor.themeColor
 	}
 
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {

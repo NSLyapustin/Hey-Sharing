@@ -5,9 +5,9 @@
 //  Created by Никита Ляпустин on 26.03.2021.
 //
 
-//import UIKit
+// import UIKit
 //
-//struct ProductsStorage {
+// struct ProductsStorage {
 //	static let allProducts: [Product] = [
 //        Product(id: 1, name: "Макбук про 13", image: #imageLiteral(resourceName: "mac1"), price: 4000, forPeriod: .week, status:.atTheReceptionPoint, category: .electronics),
 //		Product(id: 2, name: "Носки", image: #imageLiteral(resourceName: "retroCar"), price: 200, forPeriod: .week, status: .atTheTenant, category: .clothes),
@@ -27,4 +27,4 @@
 //		Product(id: 16, name: "Стол", image: #imageLiteral(resourceName: "retroCar"), price: 1000, forPeriod: .week, status: .awaitingСonfirmation, category: .furniture),
 //		Product(id: 17, name: "Мяч футбольный", image: #imageLiteral(resourceName: "retroElectronics"), price: 100, forPeriod: .day, status: .atTheTenant, category: .hobbiesAndLeisure),
 //		Product(id: 18, name: "Шуруповёрт", image: #imageLiteral(resourceName: "retroAppliances"), price: 1200, forPeriod: .week, status: .atTheTenant, category: .appliances),]
-//}
+// }

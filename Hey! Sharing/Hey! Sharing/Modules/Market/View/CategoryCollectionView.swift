@@ -53,13 +53,13 @@ class CategoryCollectionViewCell: UICollectionViewCell {
 }
 
 class CategoryCollectionView: UICollectionReusableView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-
 	static let identifier = "CategoryCollectionViewId"
 	var presenter: MarketViewControllerPresenter?
 	private var collectionView: UICollectionView?
 	private let cellId = "categoryCell"
 
 	override func awakeFromNib() {
+		super.awakeFromNib()
 		let categoryLayout = UICollectionViewFlowLayout()
 		categoryLayout.scrollDirection = .horizontal
 		collectionView = UICollectionView(frame: .zero, collectionViewLayout: categoryLayout)
@@ -80,7 +80,10 @@ class CategoryCollectionView: UICollectionReusableView, UICollectionViewDataSour
 	}
 
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? CategoryCollectionViewCell else { fatalError("Cannot deque cell") }
+		guard let cell = collectionView.dequeueReusableCell(
+			withReuseIdentifier: cellId,
+			for: indexPath
+		) as? CategoryCollectionViewCell else { return UICollectionViewCell() }
 		cell.set(category: Category.categories[indexPath.row])
 		return cell
 	}

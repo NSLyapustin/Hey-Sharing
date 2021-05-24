@@ -9,37 +9,36 @@ import UIKit
 import SnapKit
 
 class ProfileProductCell: UITableViewCell {
-
-    var product: Product? {
-        didSet {
-            guard let product = product else { return }
-            productImageView.kf.setImage(with: URL(string: "http://localhost:8080/image/\(product.imageName)"))
-            productNameLabel.text = product.name
-            productPriceLabel.text = "\(product.price)₽ \(name(of: product.forPeriod))"
-            productStatusLabel.text = "\(name(of: product.status))"
+	var product: Product? {
+		didSet {
+			guard let product = product else { return }
+			productImageView.kf.setImage(with: URL(string: "http://localhost:8080/image/\(product.imageName)"))
+			productNameLabel.text = product.name
+			productPriceLabel.text = "\(product.price)₽ \(name(of: product.forPeriod))"
+			productStatusLabel.text = "\(name(of: product.status))"
         }
     }
 
     private let productImageView: UIImageView = {
-        let imgView = UIImageView(image: #imageLiteral(resourceName: "picturePlaceholder"))
+		let imgView = UIImageView(image: #imageLiteral(resourceName: "picturePlaceholder"))
         imgView.contentMode = .scaleAspectFill
 		imgView.clipsToBounds = true
-        return imgView
+		return imgView
     }()
 
     private let productStatusLabel: UILabel = {
-        let lbl = UILabel()
-        lbl.font = UIFont.systemFont(ofSize: 16)
-        lbl.textAlignment = .right
-        return lbl
+		let lbl = UILabel()
+		lbl.font = UIFont.systemFont(ofSize: 16)
+		lbl.textAlignment = .right
+		return lbl
     }()
 
     private let productNameLabel: UILabel = {
-        let lbl = UILabel()
-        lbl.textColor = .black
-        lbl.font = UIFont.systemFont(ofSize: 16)
-        lbl.textAlignment = .left
-        return lbl
+		let lbl = UILabel()
+		lbl.textColor = .black
+		lbl.font = UIFont.systemFont(ofSize: 16)
+		lbl.textAlignment = .left
+		return lbl
     }()
 
     private let productPriceLabel: UILabel = {
@@ -77,19 +76,19 @@ class ProfileProductCell: UITableViewCell {
 	}
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addSubview(productImageView)
-        addSubview(productNameLabel)
-        addSubview(productPriceLabel)
-        addSubview(productStatusLabel)
+		super.init(style: style, reuseIdentifier: reuseIdentifier)
+		addSubview(productImageView)
+		addSubview(productNameLabel)
+		addSubview(productPriceLabel)
+		addSubview(productStatusLabel)
 
-        productImageView.snp.makeConstraints { make in
+		productImageView.snp.makeConstraints { make in
 			make.leading.equalToSuperview().inset(5)
 			make.bottom.equalToSuperview().inset(5)
 			make.top.equalToSuperview().inset(5)
 			make.width.equalTo(90)
 			make.height.equalTo(66)
-        }
+		}
 		productImageView.layer.cornerRadius = 10
 
 		productNameLabel.snp.makeConstraints { make in
@@ -98,19 +97,19 @@ class ProfileProductCell: UITableViewCell {
 			make.width.equalToSuperview().dividedBy(3)
 		}
 
-        productPriceLabel.snp.makeConstraints { make in
+		productPriceLabel.snp.makeConstraints { make in
 			make.leading.equalTo(productImageView.snp.trailing).offset(5)
 			make.top.equalTo(productNameLabel.snp.bottom).offset(10)
 			make.width.equalToSuperview().dividedBy(3)
-        }
+		}
 
-        productStatusLabel.snp.makeConstraints { make in
+		productStatusLabel.snp.makeConstraints { make in
 			make.trailing.equalToSuperview().inset(15)
 			make.centerY.equalToSuperview()
-        }
+		}
     }
 
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+		fatalError("init(coder:) has not been implemented")
     }
 }

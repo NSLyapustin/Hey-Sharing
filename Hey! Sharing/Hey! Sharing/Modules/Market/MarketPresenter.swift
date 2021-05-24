@@ -8,43 +8,32 @@
 import UIKit
 
 class MarketPresenterImplementation: MarketViewControllerPresenter {
-
 	private let marketService: MarketService = RestMarketService()
 	private weak var view: MarketViewController?
 	var products: [Product] = []
 	var coordinator: MarketCoordinator?
 
-//    init(viewController: MarketViewController, coordinator: MarketCoordinator) {
-//        self.view = viewController
-//        self.coordinator = coordinator
-//    }
-
-    func viewDidLoad() {
-        setProducts()
+    init(viewController: MarketViewController, coordinator: MarketCoordinator) {
+		self.view = viewController
+		self.coordinator = coordinator
     }
 
-	func viewController() -> UIViewController {
-		let controller = MarketViewController()
-		controller.presenter = self
-		controller.title = "Главная"
-		controller.tabBarItem = UITabBarItem(title: "Главная", image: UIImage(named: "cart.fill"), tag: 0)
-		view = controller
+    func viewDidLoad() {
 		setProducts()
-		return controller
-	}
+    }
 
 	func setProducts() {
 		marketService.getRecommendations { result in
 			switch result {
 			case .success(let products):
-                self.products = products
+				self.products = products
 				self.view?.setProducts(products: products)
-			case .failure(let err):
-				print(err)
+			case .failure:
+				self.view?.alert(message: "Не удалось загрузить данные")
 			}
 		}
 
-        view?.productCollectionView?.refreshControl?.endRefreshing()
+		view?.productCollectionView?.refreshControl?.endRefreshing()
 	}
 
 	func setProductsByCategory(category: CategoryName) {
@@ -52,24 +41,24 @@ class MarketPresenterImplementation: MarketViewControllerPresenter {
 			switch result {
 			case .success(let products):
 				self.view?.setProducts(products: products)
-			case .failure(let err):
-				print(err)
+			case .failure:
+				self.view?.alert(message: "Не удалось загрузить данные")
 			}
 		}
 	}
 
     func addToFavorite(id: Int) {
-        marketService.addToFavorites(id: id) { result in
-            switch result {
-            case .success( _):
-                print("success")
-            case .failure(let error):
-                print(error)
-            }
-        }
+		marketService.addToFavorites(id: id) { result in
+			switch result {
+			case .success:
+				return
+			case .failure:
+				self.view?.alert(message: "Не удалось выполнить действие")
+			}
+		}
     }
 
     func moveToDetailViewController(forProductWith id: Int) {
-        coordinator?.detailViewController(with: products[id].id)
+		coordinator?.detailViewController(with: products[id].id)
     }
 }

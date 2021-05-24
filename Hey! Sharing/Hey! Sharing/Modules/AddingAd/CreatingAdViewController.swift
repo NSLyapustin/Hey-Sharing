@@ -7,9 +7,12 @@
 
 import UIKit
 
-class CreatingAdViewController: UIViewController {
+protocol CreatingAdViewControllerPresenter {
+    func saveAd(name: String, image: UIImage, price: String, period: String, category: String, address: String, description: String)
+}
 
-	var presenter: CreatingAdPresenter?
+class CreatingAdViewController: UIViewController {
+	var presenter: CreatingAdViewControllerPresenter?
 	let addingSerivce: AddingService = RestAddingService()
 
 	private let productImageView = UIImageView()
@@ -172,48 +175,44 @@ class CreatingAdViewController: UIViewController {
 	}
 
 	@objc private func saveButtonTapped() {
-		print(#function)
 		guard let name = productNameTextField.text,
-			  let image = productImageView.image,
-			  let price = productPriceTextField.text,
-			  let period = forPeriodTextField.text,
-			  let category = categoryTextField.text,
-			  let description = descriptionTextView.text,
-			  let address = addressTextField.text else { return }
+		let image = productImageView.image,
+		let price = productPriceTextField.text,
+		let period = forPeriodTextField.text,
+		let category = categoryTextField.text,
+		let description = descriptionTextView.text,
+		let address = addressTextField.text else { return }
 
-		guard !name.isEmpty, !price.isEmpty, !period.isEmpty, !period.isEmpty, !category.isEmpty, !description.isEmpty, !address.isEmpty else {
+		guard !name.isEmpty,
+			!price.isEmpty,
+			!period.isEmpty,
+			!period.isEmpty,
+			!category.isEmpty,
+			!description.isEmpty,
+			!address.isEmpty else {
 			return
 		}
 
-		let product = ProductAddingDto(
+		presenter?.saveAd(
 			name: name,
 			image: image,
 			price: price,
-			forPeriod: period,
+			period: period,
 			category: category,
-			description: description,
-			address: address
+			address: address,
+			description: description
 		)
-
-		addingSerivce.saveAd(product: product) { result in
-			switch result {
-			case .success:
-                print("123")
-			case .failure:
-				print("err")
-			}
-		}
 	}
 
 	@objc private func choosePictureButtonTapped() {
 		let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
-		alert.addAction(UIAlertAction(title: "Сделать фото", style: .default, handler: {_ in
+		alert.addAction(UIAlertAction(title: "Сделать фото", style: .default) {_ in
 			self.loadPicture(fromLibrary: false)
-		}))
-		alert.addAction(UIAlertAction(title: "Выбрать из галереи", style: .default, handler: {_ in
+		})
+		alert.addAction(UIAlertAction(title: "Выбрать из галереи", style: .default) {_ in
 			self.loadPicture(fromLibrary: true)
-		}))
+		})
 
 		alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
 
@@ -232,23 +231,23 @@ class CreatingAdViewController: UIViewController {
 	}
 
     private func nameOf(category: String) -> String {
-        switch category {
-        case "Хобби и отдых":
-            return "HOBBIES_AND_LEISURE"
-        case "Все":
-            return "ALL"
-        case "Транспорт":
-            return "VEHICLE"
-        case "Бытовая техника":
-            return "APPLIANCES"
-        case "Электроника":
-            return "ELECTRONICS"
-        case "Мебель":
-            return "FURNITURE"
-        case "Одежда":
-            return "CLOTHES"
-        default:
-            return ""
+		switch category {
+		case "Хобби и отдых":
+			return "HOBBIES_AND_LEISURE"
+		case "Все":
+			return "ALL"
+		case "Транспорт":
+			return "VEHICLE"
+		case "Бытовая техника":
+			return "APPLIANCES"
+		case "Электроника":
+			return "ELECTRONICS"
+		case "Мебель":
+			return "FURNITURE"
+		case "Одежда":
+			return "CLOTHES"
+		default:
+			return ""
         }
     }
 }

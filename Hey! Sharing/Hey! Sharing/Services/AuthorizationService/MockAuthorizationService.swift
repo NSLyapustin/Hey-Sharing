@@ -9,11 +9,11 @@ import UIKit
 
 class MockAuthorizationService: AuthorizationService {
     func checkAuth(completion: @escaping ((Result<Bool, Error>) -> ())) {
-        //
+		//
     }
 
 	func signIn(login: String, password: String, completion: @escaping ((Result<Bool, SignInError>) -> Void)) {
-		if (login.isEmpty || password.isEmpty) {
+		if login.isEmpty || password.isEmpty {
 			completion(.failure(.emptyFields))
 			return
 		}
@@ -33,7 +33,7 @@ class MockAuthorizationService: AuthorizationService {
 
 	func signUp(login: String, password: String, confirmPassword: String, completion: ((Result<Bool, SignUpError>) -> Void)) {
 		// guard
-		if (login.isEmpty || password.isEmpty || confirmPassword.isEmpty) {
+		if login.isEmpty || password.isEmpty || confirmPassword.isEmpty {
 			completion(.failure(.emptyFields))
 			return
 		}
