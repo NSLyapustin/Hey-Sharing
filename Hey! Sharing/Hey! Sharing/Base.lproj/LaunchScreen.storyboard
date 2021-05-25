@@ -17,18 +17,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Добро пожаловать. Снова." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F9n-u8-K2Y">
-                                <rect key="frame" x="100" y="442" width="214" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchscreen" translatesAutoresizingMaskIntoConstraints="NO" id="WCM-AW-3R6">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="F9n-u8-K2Y" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="aY3-Py-MZh"/>
-                            <constraint firstItem="F9n-u8-K2Y" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="eC6-Fg-tyL"/>
+                            <constraint firstAttribute="bottom" secondItem="WCM-AW-3R6" secondAttribute="bottom" id="36l-p1-6MB"/>
+                            <constraint firstItem="WCM-AW-3R6" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="KAa-Eg-D9r"/>
+                            <constraint firstItem="WCM-AW-3R6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Yqr-cD-ciq"/>
+                            <constraint firstItem="WCM-AW-3R6" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="c9C-43-xRb"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -38,6 +37,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="launchscreen" width="750" height="1624"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
