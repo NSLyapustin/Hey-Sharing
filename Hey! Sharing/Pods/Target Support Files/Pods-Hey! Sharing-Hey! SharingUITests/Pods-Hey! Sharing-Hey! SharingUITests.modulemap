@@ -1,0 +1,6 @@
+framework module Pods_Hey__Sharing_Hey__SharingUITests {
+  umbrella header "Pods-Hey! Sharing-Hey! SharingUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

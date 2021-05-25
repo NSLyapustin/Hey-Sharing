@@ -1,0 +1,25 @@
+# Uncomment the next line to define a global platform for your project
+ platform :ios, '11.0'
+
+target 'Hey! Sharing' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Hey! Sharing
+  pod 'SnapKit', '~> 5.0.0'
+  pod 'KeychainAccess'
+  pod 'Alamofire', '~> 5.2'
+  pod 'Kingfisher', '~> 6.0'
+  pod 'IQKeyboardManager'
+  pod 'ReachabilitySwift'
+
+  target 'Hey! SharingTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'Hey! SharingUITests' do
+    # Pods for testing
+  end
+
+end
