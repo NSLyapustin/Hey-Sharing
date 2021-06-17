@@ -32,6 +32,7 @@ class CreatingAdPresenter: CreatingAdViewControllerPresenter {
 		addingAdService.saveAd(product: product) { result in
 			switch result {
 			case .success:
+				self.view?.clearFields()
 				self.view?.alert(message: "Товар успешно добавлен!", title: "Поздравляем!")
 			case .failure:
 				self.view?.alert(message: "Не удалось выполнить действие")

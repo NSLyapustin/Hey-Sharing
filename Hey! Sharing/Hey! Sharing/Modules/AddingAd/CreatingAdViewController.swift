@@ -65,6 +65,8 @@ class CreatingAdViewController: UIViewController {
 		button.titleLabel?.textColor = .white
 		button.titleLabel?.textAlignment = .center
 		button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
+		button.addTarget(self, action: #selector(heldDown), for: .touchDown)
+		button.addTarget(self, action: #selector(buttonHeldAndReleased), for: .touchDragExit)
 		return button
 	}()
 
@@ -175,6 +177,7 @@ class CreatingAdViewController: UIViewController {
 	}
 
 	@objc private func saveButtonTapped() {
+		saveButton.backgroundColor = UIColor.themeColor
 		guard let name = productNameTextField.text,
 		let image = productImageView.image,
 		let price = productPriceTextField.text,
@@ -202,6 +205,24 @@ class CreatingAdViewController: UIViewController {
 			address: address,
 			description: description
 		)
+	}
+
+	func clearFields() {
+		productImageView.image = nil
+		productNameTextField.text = ""
+		productPriceTextField.text = ""
+		categoryTextField.text = ""
+		addressTextField.text = ""
+		descriptionTextView.text = ""
+		forPeriodTextField.text = ""
+	}
+
+	@objc func heldDown() {
+		saveButton.backgroundColor = UIColor.themeColor.withAlphaComponent(0.5)
+	}
+
+	@objc func buttonHeldAndReleased() {
+		saveButton.backgroundColor = UIColor.themeColor
 	}
 
 	@objc private func choosePictureButtonTapped() {

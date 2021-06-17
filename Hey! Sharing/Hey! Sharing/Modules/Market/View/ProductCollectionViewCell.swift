@@ -48,7 +48,8 @@ class ProductCollectionViewCell: UICollectionViewCell {
 
 	private let markAsFavoriteButton: UIButton = {
 		let btn = UIButton()
-		btn.setTitle("💜", for: .normal)
+		btn.setTitle("♡", for: .normal)
+		btn.setTitleColor(UIColor.themeColor, for: .normal)
 		return btn
 	}()
 
@@ -116,6 +117,8 @@ class ProductCollectionViewCell: UICollectionViewCell {
 	}
 
     @objc private func favoriteButtonTapped() {
+		markAsFavoriteButton.setTitle("♥︎", for: .normal)
+		markAsFavoriteButton.setTitleColor(UIColor.themeColor, for: .normal)
 		addToFavorite?()
     }
 }
